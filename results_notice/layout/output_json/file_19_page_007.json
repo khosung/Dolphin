@@ -1,0 +1,26 @@
+[
+  {
+    "label": "header",
+    "bbox": [
+      57,
+      64,
+      133,
+      87
+    ],
+    "text": "",
+    "reading_order": 0,
+    "tags": []
+  },
+  {
+    "label": "tab",
+    "bbox": [
+      52,
+      123,
+      581,
+      493
+    ],
+    "text": "",
+    "reading_order": 1,
+    "tags": []
+  }
+]

@@ -1,0 +1,88 @@
+[
+  {
+    "label": "header",
+    "bbox": [
+      448,
+      27,
+      574,
+      40
+    ],
+    "text": "",
+    "reading_order": 0,
+    "tags": []
+  },
+  {
+    "label": "half_para",
+    "bbox": [
+      84,
+      100,
+      574,
+      160
+    ],
+    "text": "",
+    "reading_order": 1,
+    "tags": []
+  },
+  {
+    "label": "sec_1",
+    "bbox": [
+      71,
+      166,
+      147,
+      180
+    ],
+    "text": "",
+    "reading_order": 2,
+    "tags": []
+  },
+  {
+    "label": "sec_2",
+    "bbox": [
+      71,
+      187,
+      533,
+      201
+    ],
+    "text": "",
+    "reading_order": 3,
+    "tags": []
+  },
+  {
+    "label": "sec_2",
+    "bbox": [
+      71,
+      208,
+      574,
+      239
+    ],
+    "text": "",
+    "reading_order": 4,
+    "tags": []
+  },
+  {
+    "label": "list",
+    "bbox": [
+      62,
+      260,
+      576,
+      432
+    ],
+    "text": "",
+    "reading_order": 5,
+    "tags": []
+  },
+  {
+    "label": "foot",
+    "bbox": [
+      567,
+      847,
+      582,
+      859
+    ],
+    "text": "",
+    "reading_order": 6,
+    "tags": [
+      "page_num"
+    ]
+  }
+]

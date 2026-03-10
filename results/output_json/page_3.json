@@ -1,0 +1,196 @@
+[
+  {
+    "label": "equ",
+    "bbox": [
+      344,
+      195,
+      1286,
+      434
+    ],
+    "text": "",
+    "reading_order": 0,
+    "tags": []
+  },
+  {
+    "label": "para",
+    "bbox": [
+      155,
+      460,
+      882,
+      551
+    ],
+    "text": "",
+    "reading_order": 1,
+    "tags": []
+  },
+  {
+    "label": "para",
+    "bbox": [
+      232,
+      572,
+      1131,
+      657
+    ],
+    "text": "",
+    "reading_order": 2,
+    "tags": []
+  },
+  {
+    "label": "equ",
+    "bbox": [
+      308,
+      693,
+      1322,
+      1054
+    ],
+    "text": "",
+    "reading_order": 3,
+    "tags": []
+  },
+  {
+    "label": "para",
+    "bbox": [
+      155,
+      1072,
+      847,
+      1127
+    ],
+    "text": "",
+    "reading_order": 4,
+    "tags": []
+  },
+  {
+    "label": "para",
+    "bbox": [
+      155,
+      1133,
+      1470,
+      1243
+    ],
+    "text": "",
+    "reading_order": 5,
+    "tags": []
+  },
+  {
+    "label": "equ",
+    "bbox": [
+      504,
+      1275,
+      1102,
+      1359
+    ],
+    "text": "",
+    "reading_order": 6,
+    "tags": []
+  },
+  {
+    "label": "para",
+    "bbox": [
+      155,
+      1393,
+      1468,
+      1539
+    ],
+    "text": "",
+    "reading_order": 7,
+    "tags": []
+  },
+  {
+    "label": "para",
+    "bbox": [
+      231,
+      1550,
+      820,
+      1607
+    ],
+    "text": "",
+    "reading_order": 8,
+    "tags": []
+  },
+  {
+    "label": "list",
+    "bbox": [
+      231,
+      1610,
+      669,
+      1772
+    ],
+    "text": "",
+    "reading_order": 9,
+    "tags": []
+  },
+  {
+    "label": "para",
+    "bbox": [
+      156,
+      1775,
+      517,
+      1827
+    ],
+    "text": "",
+    "reading_order": 10,
+    "tags": []
+  },
+  {
+    "label": "para",
+    "bbox": [
+      231,
+      1836,
+      826,
+      1888
+    ],
+    "text": "",
+    "reading_order": 11,
+    "tags": []
+  },
+  {
+    "label": "para",
+    "bbox": [
+      155,
+      1897,
+      1465,
+      2016
+    ],
+    "text": "",
+    "reading_order": 12,
+    "tags": []
+  },
+  {
+    "label": "equ",
+    "bbox": [
+      492,
+      2036,
+      1125,
+      2096
+    ],
+    "text": "",
+    "reading_order": 13,
+    "tags": []
+  },
+  {
+    "label": "equ",
+    "bbox": [
+      495,
+      2118,
+      1113,
+      2222
+    ],
+    "text": "",
+    "reading_order": 14,
+    "tags": []
+  },
+  {
+    "label": "foot",
+    "bbox": [
+      189,
+      2236,
+      302,
+      2275
+    ],
+    "text": "",
+    "reading_order": 15,
+    "tags": [
+      "page_num"
+    ]
+  }
+]

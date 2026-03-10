@@ -1,0 +1,196 @@
+[
+  {
+    "label": "header",
+    "bbox": [
+      145,
+      97,
+      189,
+      124
+    ],
+    "text": "",
+    "reading_order": 0,
+    "tags": [
+      "page_num"
+    ]
+  },
+  {
+    "label": "header",
+    "bbox": [
+      751,
+      96,
+      1074,
+      127
+    ],
+    "text": "",
+    "reading_order": 1,
+    "tags": []
+  },
+  {
+    "label": "para",
+    "bbox": [
+      145,
+      167,
+      522,
+      200
+    ],
+    "text": "",
+    "reading_order": 2,
+    "tags": []
+  },
+  {
+    "label": "equ",
+    "bbox": [
+      288,
+      230,
+      1070,
+      423
+    ],
+    "text": "",
+    "reading_order": 3,
+    "tags": []
+  },
+  {
+    "label": "para",
+    "bbox": [
+      145,
+      455,
+      1074,
+      520
+    ],
+    "text": "",
+    "reading_order": 4,
+    "tags": []
+  },
+  {
+    "label": "equ",
+    "bbox": [
+      444,
+      550,
+      774,
+      619
+    ],
+    "text": "",
+    "reading_order": 5,
+    "tags": []
+  },
+  {
+    "label": "para",
+    "bbox": [
+      145,
+      649,
+      234,
+      681
+    ],
+    "text": "",
+    "reading_order": 6,
+    "tags": []
+  },
+  {
+    "label": "equ",
+    "bbox": [
+      288,
+      712,
+      932,
+      935
+    ],
+    "text": "",
+    "reading_order": 7,
+    "tags": []
+  },
+  {
+    "label": "para",
+    "bbox": [
+      145,
+      962,
+      267,
+      995
+    ],
+    "text": "",
+    "reading_order": 8,
+    "tags": []
+  },
+  {
+    "label": "para",
+    "bbox": [
+      179,
+      996,
+      799,
+      1029
+    ],
+    "text": "",
+    "reading_order": 9,
+    "tags": []
+  },
+  {
+    "label": "equ",
+    "bbox": [
+      312,
+      1060,
+      908,
+      1148
+    ],
+    "text": "",
+    "reading_order": 10,
+    "tags": []
+  },
+  {
+    "label": "para",
+    "bbox": [
+      145,
+      1177,
+      533,
+      1211
+    ],
+    "text": "",
+    "reading_order": 11,
+    "tags": []
+  },
+  {
+    "label": "equ",
+    "bbox": [
+      321,
+      1244,
+      898,
+      1330
+    ],
+    "text": "",
+    "reading_order": 12,
+    "tags": []
+  },
+  {
+    "label": "para",
+    "bbox": [
+      145,
+      1360,
+      384,
+      1392
+    ],
+    "text": "",
+    "reading_order": 13,
+    "tags": []
+  },
+  {
+    "label": "equ",
+    "bbox": [
+      445,
+      1421,
+      768,
+      1508
+    ],
+    "text": "",
+    "reading_order": 14,
+    "tags": []
+  },
+  {
+    "label": "para",
+    "bbox": [
+      145,
+      1541,
+      572,
+      1574
+    ],
+    "text": "",
+    "reading_order": 15,
+    "tags": []
+  }
+]

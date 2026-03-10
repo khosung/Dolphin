@@ -1,0 +1,280 @@
+[
+  {
+    "label": "half_para",
+    "bbox": [
+      54,
+      83,
+      325,
+      111
+    ],
+    "text": "",
+    "reading_order": 0,
+    "tags": []
+  },
+  {
+    "label": "sec_1",
+    "bbox": [
+      54,
+      120,
+      210,
+      138
+    ],
+    "text": "",
+    "reading_order": 1,
+    "tags": []
+  },
+  {
+    "label": "sec_2",
+    "bbox": [
+      54,
+      143,
+      178,
+      159
+    ],
+    "text": "",
+    "reading_order": 2,
+    "tags": []
+  },
+  {
+    "label": "para",
+    "bbox": [
+      54,
+      165,
+      325,
+      355
+    ],
+    "text": "",
+    "reading_order": 3,
+    "tags": []
+  },
+  {
+    "label": "para",
+    "bbox": [
+      54,
+      355,
+      325,
+      504
+    ],
+    "text": "",
+    "reading_order": 4,
+    "tags": []
+  },
+  {
+    "label": "para",
+    "bbox": [
+      54,
+      504,
+      325,
+      627
+    ],
+    "text": "",
+    "reading_order": 5,
+    "tags": []
+  },
+  {
+    "label": "sec_2",
+    "bbox": [
+      54,
+      633,
+      238,
+      649
+    ],
+    "text": "",
+    "reading_order": 6,
+    "tags": []
+  },
+  {
+    "label": "para",
+    "bbox": [
+      54,
+      655,
+      325,
+      697
+    ],
+    "text": "",
+    "reading_order": 7,
+    "tags": []
+  },
+  {
+    "label": "equ",
+    "bbox": [
+      136,
+      709,
+      323,
+      723
+    ],
+    "text": "",
+    "reading_order": 8,
+    "tags": []
+  },
+  {
+    "label": "para",
+    "bbox": [
+      54,
+      732,
+      325,
+      788
+    ],
+    "text": "",
+    "reading_order": 9,
+    "tags": []
+  },
+  {
+    "label": "para",
+    "bbox": [
+      346,
+      83,
+      617,
+      137
+    ],
+    "text": "",
+    "reading_order": 10,
+    "tags": []
+  },
+  {
+    "label": "para",
+    "bbox": [
+      346,
+      137,
+      618,
+      232
+    ],
+    "text": "",
+    "reading_order": 11,
+    "tags": []
+  },
+  {
+    "label": "para",
+    "bbox": [
+      346,
+      232,
+      618,
+      286
+    ],
+    "text": "",
+    "reading_order": 12,
+    "tags": []
+  },
+  {
+    "label": "equ",
+    "bbox": [
+      418,
+      296,
+      616,
+      311
+    ],
+    "text": "",
+    "reading_order": 13,
+    "tags": []
+  },
+  {
+    "label": "para",
+    "bbox": [
+      346,
+      322,
+      618,
+      378
+    ],
+    "text": "",
+    "reading_order": 14,
+    "tags": []
+  },
+  {
+    "label": "para",
+    "bbox": [
+      346,
+      379,
+      618,
+      446
+    ],
+    "text": "",
+    "reading_order": 15,
+    "tags": []
+  },
+  {
+    "label": "para",
+    "bbox": [
+      346,
+      446,
+      618,
+      514
+    ],
+    "text": "",
+    "reading_order": 16,
+    "tags": []
+  },
+  {
+    "label": "sec_2",
+    "bbox": [
+      346,
+      521,
+      493,
+      537
+    ],
+    "text": "",
+    "reading_order": 17,
+    "tags": []
+  },
+  {
+    "label": "para",
+    "bbox": [
+      346,
+      543,
+      618,
+      586
+    ],
+    "text": "",
+    "reading_order": 18,
+    "tags": []
+  },
+  {
+    "label": "para",
+    "bbox": [
+      346,
+      591,
+      618,
+      753
+    ],
+    "text": "",
+    "reading_order": 19,
+    "tags": []
+  },
+  {
+    "label": "para",
+    "bbox": [
+      346,
+      753,
+      618,
+      808
+    ],
+    "text": "",
+    "reading_order": 20,
+    "tags": []
+  },
+  {
+    "label": "fnote",
+    "bbox": [
+      66,
+      794,
+      293,
+      807
+    ],
+    "text": "",
+    "reading_order": 21,
+    "tags": []
+  },
+  {
+    "label": "foot",
+    "bbox": [
+      337,
+      831,
+      354,
+      844
+    ],
+    "text": "",
+    "reading_order": 22,
+    "tags": [
+      "page_num"
+    ]
+  }
+]

@@ -1,0 +1,40 @@
+[
+  {
+    "label": "header",
+    "bbox": [
+      447,
+      27,
+      574,
+      40
+    ],
+    "text": "",
+    "reading_order": 0,
+    "tags": []
+  },
+  {
+    "label": "list",
+    "bbox": [
+      62,
+      100,
+      577,
+      291
+    ],
+    "text": "",
+    "reading_order": 1,
+    "tags": []
+  },
+  {
+    "label": "foot",
+    "bbox": [
+      564,
+      845,
+      582,
+      858
+    ],
+    "text": "",
+    "reading_order": 2,
+    "tags": [
+      "page_num"
+    ]
+  }
+]

@@ -1,0 +1,220 @@
+[
+  {
+    "label": "header",
+    "bbox": [
+      447,
+      27,
+      574,
+      40
+    ],
+    "text": "",
+    "reading_order": 0,
+    "tags": []
+  },
+  {
+    "label": "para",
+    "bbox": [
+      84,
+      95,
+      409,
+      109
+    ],
+    "text": "",
+    "reading_order": 1,
+    "tags": []
+  },
+  {
+    "label": "tab",
+    "bbox": [
+      85,
+      115,
+      553,
+      149
+    ],
+    "text": "",
+    "reading_order": 2,
+    "tags": []
+  },
+  {
+    "label": "list",
+    "bbox": [
+      75,
+      155,
+      552,
+      184
+    ],
+    "text": "",
+    "reading_order": 3,
+    "tags": []
+  },
+  {
+    "label": "tab",
+    "bbox": [
+      84,
+      187,
+      538,
+      242
+    ],
+    "text": "",
+    "reading_order": 4,
+    "tags": []
+  },
+  {
+    "label": "anno",
+    "bbox": [
+      75,
+      248,
+      552,
+      276
+    ],
+    "text": "",
+    "reading_order": 5,
+    "tags": []
+  },
+  {
+    "label": "para",
+    "bbox": [
+      84,
+      280,
+      428,
+      294
+    ],
+    "text": "",
+    "reading_order": 6,
+    "tags": []
+  },
+  {
+    "label": "tab",
+    "bbox": [
+      85,
+      300,
+      553,
+      334
+    ],
+    "text": "",
+    "reading_order": 7,
+    "tags": []
+  },
+  {
+    "label": "anno",
+    "bbox": [
+      75,
+      340,
+      572,
+      368
+    ],
+    "text": "",
+    "reading_order": 8,
+    "tags": []
+  },
+  {
+    "label": "para",
+    "bbox": [
+      85,
+      372,
+      386,
+      386
+    ],
+    "text": "",
+    "reading_order": 9,
+    "tags": []
+  },
+  {
+    "label": "tab",
+    "bbox": [
+      85,
+      392,
+      554,
+      426
+    ],
+    "text": "",
+    "reading_order": 10,
+    "tags": []
+  },
+  {
+    "label": "anno",
+    "bbox": [
+      75,
+      432,
+      575,
+      461
+    ],
+    "text": "",
+    "reading_order": 11,
+    "tags": []
+  },
+  {
+    "label": "para",
+    "bbox": [
+      85,
+      465,
+      498,
+      479
+    ],
+    "text": "",
+    "reading_order": 12,
+    "tags": []
+  },
+  {
+    "label": "tab",
+    "bbox": [
+      85,
+      485,
+      553,
+      519
+    ],
+    "text": "",
+    "reading_order": 13,
+    "tags": []
+  },
+  {
+    "label": "list",
+    "bbox": [
+      62,
+      542,
+      576,
+      670
+    ],
+    "text": "",
+    "reading_order": 14,
+    "tags": []
+  },
+  {
+    "label": "tab",
+    "bbox": [
+      76,
+      675,
+      553,
+      712
+    ],
+    "text": "",
+    "reading_order": 15,
+    "tags": []
+  },
+  {
+    "label": "anno",
+    "bbox": [
+      74,
+      719,
+      564,
+      831
+    ],
+    "text": "",
+    "reading_order": 16,
+    "tags": []
+  },
+  {
+    "label": "foot",
+    "bbox": [
+      565,
+      846,
+      582,
+      859
+    ],
+    "text": "",
+    "reading_order": 17,
+    "tags": [
+      "page_num"
+    ]
+  }
+]

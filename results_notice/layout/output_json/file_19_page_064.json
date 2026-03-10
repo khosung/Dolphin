@@ -1,0 +1,160 @@
+[
+  {
+    "label": "header",
+    "bbox": [
+      59,
+      28,
+      132,
+      42
+    ],
+    "text": "",
+    "reading_order": 0,
+    "tags": []
+  },
+  {
+    "label": "sec_2",
+    "bbox": [
+      59,
+      66,
+      427,
+      87
+    ],
+    "text": "",
+    "reading_order": 1,
+    "tags": []
+  },
+  {
+    "label": "tab",
+    "bbox": [
+      49,
+      123,
+      582,
+      214
+    ],
+    "text": "",
+    "reading_order": 2,
+    "tags": []
+  },
+  {
+    "label": "sec_3",
+    "bbox": [
+      57,
+      229,
+      83,
+      246
+    ],
+    "text": "",
+    "reading_order": 3,
+    "tags": []
+  },
+  {
+    "label": "list",
+    "bbox": [
+      61,
+      254,
+      574,
+      328
+    ],
+    "text": "",
+    "reading_order": 4,
+    "tags": []
+  },
+  {
+    "label": "sec_3",
+    "bbox": [
+      57,
+      345,
+      85,
+      361
+    ],
+    "text": "",
+    "reading_order": 5,
+    "tags": []
+  },
+  {
+    "label": "list",
+    "bbox": [
+      61,
+      370,
+      508,
+      409
+    ],
+    "text": "",
+    "reading_order": 6,
+    "tags": []
+  },
+  {
+    "label": "sec_3",
+    "bbox": [
+      57,
+      431,
+      82,
+      448
+    ],
+    "text": "",
+    "reading_order": 7,
+    "tags": []
+  },
+  {
+    "label": "list",
+    "bbox": [
+      61,
+      458,
+      575,
+      613
+    ],
+    "text": "",
+    "reading_order": 8,
+    "tags": []
+  },
+  {
+    "label": "list",
+    "bbox": [
+      72,
+      614,
+      572,
+      750
+    ],
+    "text": "",
+    "reading_order": 9,
+    "tags": []
+  },
+  {
+    "label": "para",
+    "bbox": [
+      62,
+      750,
+      562,
+      796
+    ],
+    "text": "",
+    "reading_order": 10,
+    "tags": []
+  },
+  {
+    "label": "para",
+    "bbox": [
+      74,
+      798,
+      574,
+      829
+    ],
+    "text": "",
+    "reading_order": 11,
+    "tags": []
+  },
+  {
+    "label": "foot",
+    "bbox": [
+      50,
+      845,
+      68,
+      859
+    ],
+    "text": "",
+    "reading_order": 12,
+    "tags": [
+      "page_num"
+    ]
+  }
+]

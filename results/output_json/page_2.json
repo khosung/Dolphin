@@ -1,0 +1,178 @@
+[
+  {
+    "label": "sec_0",
+    "bbox": [
+      274,
+      178,
+      1191,
+      225
+    ],
+    "text": "",
+    "reading_order": 0,
+    "tags": []
+  },
+  {
+    "label": "para",
+    "bbox": [
+      264,
+      284,
+      1205,
+      426
+    ],
+    "text": "",
+    "reading_order": 1,
+    "tags": [
+      "author"
+    ]
+  },
+  {
+    "label": "para",
+    "bbox": [
+      683,
+      447,
+      787,
+      480
+    ],
+    "text": "",
+    "reading_order": 2,
+    "tags": []
+  },
+  {
+    "label": "sec_1",
+    "bbox": [
+      380,
+      530,
+      501,
+      567
+    ],
+    "text": "",
+    "reading_order": 3,
+    "tags": [
+      "paper_abstract"
+    ]
+  },
+  {
+    "label": "para",
+    "bbox": [
+      204,
+      588,
+      680,
+      949
+    ],
+    "text": "",
+    "reading_order": 4,
+    "tags": [
+      "paper_abstract"
+    ]
+  },
+  {
+    "label": "sec_1",
+    "bbox": [
+      163,
+      971,
+      379,
+      1008
+    ],
+    "text": "",
+    "reading_order": 5,
+    "tags": []
+  },
+  {
+    "label": "para",
+    "bbox": [
+      163,
+      1025,
+      721,
+      1501
+    ],
+    "text": "",
+    "reading_order": 6,
+    "tags": []
+  },
+  {
+    "label": "para",
+    "bbox": [
+      163,
+      1502,
+      721,
+      1838
+    ],
+    "text": "",
+    "reading_order": 7,
+    "tags": []
+  },
+  {
+    "label": "para",
+    "bbox": [
+      750,
+      533,
+      1308,
+      736
+    ],
+    "text": "",
+    "reading_order": 8,
+    "tags": []
+  },
+  {
+    "label": "para",
+    "bbox": [
+      750,
+      763,
+      1310,
+      1238
+    ],
+    "text": "",
+    "reading_order": 9,
+    "tags": []
+  },
+  {
+    "label": "para",
+    "bbox": [
+      750,
+      1263,
+      1310,
+      1604
+    ],
+    "text": "",
+    "reading_order": 10,
+    "tags": []
+  },
+  {
+    "label": "para",
+    "bbox": [
+      750,
+      1629,
+      1310,
+      1937
+    ],
+    "text": "",
+    "reading_order": 11,
+    "tags": []
+  },
+  {
+    "label": "fnote",
+    "bbox": [
+      164,
+      1851,
+      718,
+      1930
+    ],
+    "text": "",
+    "reading_order": 12,
+    "tags": []
+  },
+  {
+    "label": "watermark",
+    "bbox": [
+      27,
+      655,
+      82,
+      1527
+    ],
+    "text": "",
+    "reading_order": 13,
+    "tags": [
+      "meta_num"
+    ]
+  }
+]

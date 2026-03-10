@@ -1,0 +1,134 @@
+[
+  {
+    "label": "fig",
+    "bbox": [
+      401,
+      291,
+      571,
+      469
+    ],
+    "text": "",
+    "reading_order": 0,
+    "tags": []
+  },
+  {
+    "label": "sec_1",
+    "bbox": [
+      401,
+      486,
+      568,
+      520
+    ],
+    "text": "",
+    "reading_order": 1,
+    "tags": []
+  },
+  {
+    "label": "para",
+    "bbox": [
+      310,
+      536,
+      569,
+      560
+    ],
+    "text": "",
+    "reading_order": 2,
+    "tags": []
+  },
+  {
+    "label": "para",
+    "bbox": [
+      266,
+      565,
+      568,
+      589
+    ],
+    "text": "",
+    "reading_order": 3,
+    "tags": []
+  },
+  {
+    "label": "para",
+    "bbox": [
+      243,
+      592,
+      568,
+      616
+    ],
+    "text": "",
+    "reading_order": 4,
+    "tags": []
+  },
+  {
+    "label": "para",
+    "bbox": [
+      115,
+      620,
+      569,
+      642
+    ],
+    "text": "",
+    "reading_order": 5,
+    "tags": []
+  },
+  {
+    "label": "para",
+    "bbox": [
+      118,
+      648,
+      568,
+      670
+    ],
+    "text": "",
+    "reading_order": 6,
+    "tags": []
+  },
+  {
+    "label": "para",
+    "bbox": [
+      346,
+      677,
+      568,
+      697
+    ],
+    "text": "",
+    "reading_order": 7,
+    "tags": []
+  },
+  {
+    "label": "para",
+    "bbox": [
+      371,
+      705,
+      568,
+      725
+    ],
+    "text": "",
+    "reading_order": 8,
+    "tags": []
+  },
+  {
+    "label": "para",
+    "bbox": [
+      396,
+      731,
+      568,
+      752
+    ],
+    "text": "",
+    "reading_order": 9,
+    "tags": []
+  },
+  {
+    "label": "para",
+    "bbox": [
+      433,
+      759,
+      568,
+      779
+    ],
+    "text": "",
+    "reading_order": 10,
+    "tags": []
+  }
+]

@@ -1,0 +1,64 @@
+[
+  {
+    "label": "header",
+    "bbox": [
+      447,
+      27,
+      574,
+      40
+    ],
+    "text": "",
+    "reading_order": 0,
+    "tags": []
+  },
+  {
+    "label": "list",
+    "bbox": [
+      90,
+      106,
+      574,
+      136
+    ],
+    "text": "",
+    "reading_order": 1,
+    "tags": []
+  },
+  {
+    "label": "para",
+    "bbox": [
+      61,
+      147,
+      237,
+      160
+    ],
+    "text": "",
+    "reading_order": 2,
+    "tags": []
+  },
+  {
+    "label": "list",
+    "bbox": [
+      75,
+      161,
+      575,
+      269
+    ],
+    "text": "",
+    "reading_order": 3,
+    "tags": []
+  },
+  {
+    "label": "foot",
+    "bbox": [
+      566,
+      847,
+      582,
+      859
+    ],
+    "text": "",
+    "reading_order": 4,
+    "tags": [
+      "page_num"
+    ]
+  }
+]

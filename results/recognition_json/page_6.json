@@ -1,0 +1,2295 @@
+{
+  "source_file": "./demo/page_imgs/page_6.pdf",
+  "total_pages": 9,
+  "pages": [
+    {
+      "page_number": 1,
+      "elements": [
+        {
+          "label": "fig",
+          "text": "![Figure](figures/page_6_page_001_figure_000.png)",
+          "figure_path": "figures/page_6_page_001_figure_000.png",
+          "bbox": [
+            74,
+            15,
+            123,
+            49
+          ],
+          "reading_order": 0,
+          "tags": []
+        },
+        {
+          "label": "header",
+          "bbox": [
+            147,
+            18,
+            543,
+            46
+          ],
+          "text": "This CVPR paper is the Open Access version, provided by the Computer Vision Foundation.\nExcept for this watermark, it is identical to the version available on IEEE Xplore.",
+          "reading_order": 1,
+          "tags": [
+            "meta_subject"
+          ]
+        },
+        {
+          "label": "sec_0",
+          "bbox": [
+            170,
+            116,
+            501,
+            138
+          ],
+          "text": "Deep Residual Learning for Image Recognition",
+          "reading_order": 2,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            151,
+            168,
+            520,
+            224
+          ],
+          "text": "Kaiming He\nXiangyu Zhang\nShaoqing Ren\nJian Sun\n\nMicrosoft Research\n\n{kahe, v-xiang, v-shren, jiansun}@microsoft.com",
+          "reading_order": 3,
+          "tags": [
+            "author",
+            "author_mail",
+            "author_affili"
+          ]
+        },
+        {
+          "label": "sec_1",
+          "bbox": [
+            164,
+            251,
+            216,
+            268
+          ],
+          "text": "Abstract",
+          "reading_order": 4,
+          "tags": [
+            "paper_abstract"
+          ]
+        },
+        {
+          "label": "para",
+          "bbox": [
+            53,
+            276,
+            326,
+            480
+          ],
+          "text": "Deeper neural networks are more difficult to train. We\npresent a residual learning framework to ease the training\nof networks that are substantially deeper than those used\npreviously. We explicitly reformulate the layers as learn-\ning residual functions with reference to the layer inputs, in-\nstead of learning unrefereed functions. We provide com-\nprehensive empirical evidence showing that these residual\nnetworks are easier to optimize, and can gain accuracy from\ninput changes. The proposed method can be used to both\nevaluate residual nets with a depth of up to 152 layers—8 x\ndeeper than VGG nets [40] but still having lower complex-\nity. An ensemble of these residual nets achieves 3.57 % error\non the ImageNet test set. This result won the 1st place on the\nILSVRC 2015 classification task. We also present analysis\non CIFAR-10 with 100 and 1000 layers.",
+          "reading_order": 5,
+          "tags": [
+            "paper_abstract"
+          ]
+        },
+        {
+          "label": "para",
+          "bbox": [
+            54,
+            480,
+            326,
+            590
+          ],
+          "text": "The depth of representations is of central importance\nfor many visual recognition tasks. Solely due to our ex-\ntremely deep representations, we obtain a 28 % relative im-\nprovement on the COCO object detection dataset. Deep\nresidual nets are foundations of our submissions to ILSVRC\n& COCO 2015 competitions 1 , where we also won the 1st\nplaces on the tasks of ImageNet detection, ImageNet local-\nization, COCO detection, and COCO segmentation.",
+          "reading_order": 6,
+          "tags": [
+            "paper_abstract"
+          ]
+        },
+        {
+          "label": "sec_1",
+          "bbox": [
+            55,
+            602,
+            145,
+            620
+          ],
+          "text": "1. Introduction",
+          "reading_order": 7,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            54,
+            627,
+            326,
+            777
+          ],
+          "text": "Deep convolutional neural networks [22, 21] have led\nto a series of breakthroughs for image classification [21,\n49, 39] . Deep networks naturally integrate low/mid/high-\nlevel features [49] and classifiers in an end-to-end multi-\nlayer fashion, and the “ levels ” of features can be enriched\nby the number of stacked layers (depth). Recent evidence\nhas found that convolutional neural networks perform well\nand the leading features [40, 43, 12, 16] on the challenging\nImageNet dataset [35] all exploit “ very deep ” [40] models,\nwith a depth of sixteen [40] to thirty [16] . Many other non-\ntrivial visual recognition tasks [7, 11, 6, 32, 27] have also",
+          "reading_order": 8,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            347,
+            408,
+            534,
+            423
+          ],
+          "text": "greatly benefited from very deep models.",
+          "reading_order": 9,
+          "tags": []
+        },
+        {
+          "label": "fig",
+          "text": "![Figure](figures/page_6_page_001_figure_010.png)",
+          "figure_path": "figures/page_6_page_001_figure_010.png",
+          "bbox": [
+            347,
+            251,
+            619,
+            340
+          ],
+          "reading_order": 10,
+          "tags": []
+        },
+        {
+          "label": "cap",
+          "bbox": [
+            346,
+            343,
+            619,
+            394
+          ],
+          "text": "Figure. 1. Training error (left) and test error (right) on CIFAR-10\nwith 20-layer and 56-layer \"plain\" networks. The deeper network\nhas higher training error, and thus test error. Similar phenomena\non ImageNet is presented in Fig. 4 .",
+          "reading_order": 11,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            346,
+            423,
+            619,
+            560
+          ],
+          "text": "Driven by the significance of depth, a question arises: Is\nLearning better networks as easy as stacking more layers?\nAn obstacle to answering this question was the notorious\nproblem of vanishing/exploding gradients [14, 1, 8] , which\nhamper convergence from the beginning. This problem,\nhowever, has been largely addressed by normalized initial-\nization [23, 8, 36, 12] and intermediate normalization layers\n[16] , which enable networks with tens of layers to start con-\nverging for stochastic gradient descent (SGD) with back-\npropagation [22] .",
+          "reading_order": 12,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            346,
+            561,
+            619,
+            671
+          ],
+          "text": "When deeper networks are able to start converging, a\ndegradation problem has been exposed: with the network\ndepth increasing, accuracy gets saturated (which might be\nunsurprising) and then degrades rapidly. Unexpectedly,\nsuch degradation is not caused by overfitting , and adding\nmore layers to a suitably deep model leads to higher train-\ning error , as reported in [10, 41] and thoroughly verified by\nour experiments. Fig. 1 shows a typical example.",
+          "reading_order": 13,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            346,
+            672,
+            619,
+            808
+          ],
+          "text": "The degradation of (training accuracy) indicates that not\nall systems are similarly easy to optimize. Let us consider a\nshallower architecture and its deeper counterpart that adds\nmore layers onto it. There exists a solution by construction\nto the deeper model: the added layers are identity mapping,\nand the other layers are copied from the learned shallower\nmodel. The existence of this constructed solution indicates\nthat a deeper model should produce no higher training error\nthan its shallower counterpart. But experiments show that\nour current solvers on hand are unable to find solutions that",
+          "reading_order": 14,
+          "tags": []
+        },
+        {
+          "label": "fnote",
+          "bbox": [
+            55,
+            785,
+            325,
+            808
+          ],
+          "text": "' http://image-net.org/challenges/LSVRC/2015, and\n' http://mccoco.org/dataset/detections-challenge2015 .",
+          "reading_order": 15,
+          "tags": []
+        },
+        {
+          "label": "foot",
+          "bbox": [
+            336,
+            829,
+            355,
+            842
+          ],
+          "text": "770",
+          "reading_order": 16,
+          "tags": [
+            "page_num"
+          ]
+        }
+      ]
+    },
+    {
+      "page_number": 2,
+      "elements": [
+        {
+          "label": "fig",
+          "text": "![Figure](figures/page_6_page_002_figure_000.png)",
+          "figure_path": "figures/page_6_page_002_figure_000.png",
+          "bbox": [
+            111,
+            86,
+            264,
+            177
+          ],
+          "reading_order": 0,
+          "tags": []
+        },
+        {
+          "label": "cap",
+          "bbox": [
+            96,
+            177,
+            283,
+            190
+          ],
+          "text": "Figure 2. Residual learning: a building block.",
+          "reading_order": 1,
+          "tags": []
+        },
+        {
+          "label": "half_para",
+          "bbox": [
+            53,
+            204,
+            325,
+            232
+          ],
+          "text": "are comparably good or better than the constructed solution\n(or unable to do so in feasible time).",
+          "reading_order": 2,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            54,
+            232,
+            325,
+            409
+          ],
+          "text": "In this paper, we address the degradation problem by\nintroducing a deep residual learning framework. In-\nstead of hoping each few stacked layers directly fit a\ndesired underlying mapping, we explicitly let these lay-\ners fit a residual mapping. Formally, denoting the desired\nunderlying mapping as $\\hat{H}(x)$ , we let the stacked nonlinear\nlayers fit another mapping of $\\mathcal{F}(x)=\\hat{\\mathcal{F}}(x)-\\hat{H}(x)\\cdot x$ . The orig-\ninal mapping is recorded as $f(x)$ . We hypothesize that it\nis possible to exist a residual mapping that matches\nthe original, unreferenced mapping. To the extreme, if an\nidentity mapping were optimal, it would be easier to push\nthe residual to zero than to fit an identity mapping by a stack\nof nonlinear layers.",
+          "reading_order": 3,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            54,
+            409,
+            325,
+            560
+          ],
+          "text": "The formulation of $\\mathcal{F}(x) \\times x$ can be realized by feedfor-\nward neural networks with “ shortcut connections ” (Fig. 2 ).\nShortcut connections [22, 33, 48] are those skipping one or\nmore layers. In our case, the shortcut connections simply\nperform identity mapping, and their outputs are added to\nthe outputs of the stacked layers (Fig. 2 ). Identity short-\ncut connections add further extra parameters not com-\npletely learnable. They enhance the network by being trained\nend-to-end by SGD with backpropagation, and can be eas-\nily implemented using common libraries ( e.g., Cafe [19] )\nwithout modifying the solvers.",
+          "reading_order": 4,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            54,
+            560,
+            325,
+            669
+          ],
+          "text": "We present comprehensive experiments on ImageNet\n[35] to show the degradation problem and evaluate our\nmethod. We show that: 1) Our extremely deep residual nets\nare easy to optimize, but the counterpart \"plain\" nets (that\nsimply stack layers) exhibit higher training error when the\ndepth decreases; 2) Our deep residual nets can easily enjoy\naccuracy gains from greatly increased depth, producing re-\nsults substantially better than previous networks.",
+          "reading_order": 5,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            54,
+            670,
+            325,
+            739
+          ],
+          "text": "Similar phenomena are also shown on the CIFAR-10 set\n[20] , suggesting that the optimization difficulties and the\neffects of our method are not just akin to a particular dataset.\nIn order to explore the impact of the training procedure, we look\nover 100 layers, and explore models with over 1000 layers.",
+          "reading_order": 6,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            54,
+            740,
+            325,
+            808
+          ],
+          "text": "On the ImageNet classification dataset [35] , we obtain\nexcellent results by extremely deep residual nets. Our 152-\nlayer residual net is the deepest network ever present\nin ImageNet. We evaluate our proposed deep resi-\nduals [40] . Our ensemble has 3.57 % top-5 error on the",
+          "reading_order": 7,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            346,
+            82,
+            619,
+            205
+          ],
+          "text": "ImageNet test set, and won the 1st place in the ILSVRC\n2015 classification competition. The extremely deep rep-\nresentations also have excellent generalization performance\non other recognition tasks, and lead us to further win the\n1st place on: ImageNet detection , ImageNet localization ,\nImageNet public domain , and ImageNet 2015\nCOCO 2015 competitions. This strong evidence shows that\nthe residual learning principle is generic, and we expect that\nit is applicable in other vision and non-vision problems.",
+          "reading_order": 8,
+          "tags": []
+        },
+        {
+          "label": "sec_1",
+          "bbox": [
+            346,
+            218,
+            444,
+            234
+          ],
+          "text": "2. Related Work",
+          "reading_order": 9,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            346,
+            242,
+            619,
+            352
+          ],
+          "text": "Residual Representations. In image recognition, VLD\n[18] is a representation that encodes by the residual vectors\nwith respect to a dictionary, and Fisher Vector [30] can be\nformulated as a probabilistic version [18] of VLD. Both\nof them are powerful shallow representations for image re-\ntrieval and classification [4, 47] . For vector quantization,\nencoding residual vectors [17] is shown to be more effec-\ntive than encoding original vectors.",
+          "reading_order": 10,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            346,
+            352,
+            619,
+            516
+          ],
+          "text": "In low-level vision and computer graphics, for solv-\ning Partial Differential Equations (PDEs), the widely used\nMultigrid method [3] reformulates the system as subprob-\nlems at multiple scales, where each subproblem is respon-\nsible for the residual solution between a coarser and a finer\nscale. An alternative to Multigrid is hierarchical basis pre-\nconditioning [44, 45] , which relies on variables that repre-\nsent residual vectors between two scales. It has been shown\n[34, 44, 45] that these solvers converge much faster than stan-\ndard solvers that are unaware of the residual nature of the\nsolutions. These methods suggest that a good reformulation\nor preconditioning can simplify the optimization.",
+          "reading_order": 11,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            346,
+            521,
+            619,
+            672
+          ],
+          "text": "Shortcut Connections. Practices and theories that lead to\nshortcut connections [2, 33, 48] have been studied for a long\ntime. An early practice of training multi-layer perceptrons\n(MLPs) is to add a linear layer connected from the network\ninput to the output [33, 48] . In [43, 24] , a few interme-\ndiate layers are directly connected to auxiliary classifiers\nfor addressing incoming/exploding gradients. The papers\nof [25, 37, 31, 46] proposed an effective feature extraction:\nsponses, gradients, and propagated errors, implemented by\nshortcut connections. In [43] , an \"inception\" layer is com-\nposed of a shortcut branch and a few deeper branches.",
+          "reading_order": 12,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            346,
+            672,
+            619,
+            808
+          ],
+          "text": "Concurrent with our work, \"highway networks\" [41, 42]\npresent shortcut connections with gating functions [15] .\nThese gates are data-dependent and have parameters, in\ncontrast to our identity shortcuts that are parameter-free.\nWhen a gated shortcut is \"closed\" (approaching zero), the\nlayers in highway networks represent non-residual func-\ntions. On the contrary, our formulation always learns\nresidual functions; our identity shortcuts are never closed,\nand all information is always passed through, with addi-\ntional residual functions to be learned. In addition, high-",
+          "reading_order": 13,
+          "tags": []
+        },
+        {
+          "label": "foot",
+          "bbox": [
+            337,
+            856,
+            353,
+            869
+          ],
+          "text": "1",
+          "reading_order": 14,
+          "tags": [
+            "page_num"
+          ]
+        }
+      ]
+    },
+    {
+      "page_number": 3,
+      "elements": [
+        {
+          "label": "half_para",
+          "bbox": [
+            54,
+            83,
+            325,
+            111
+          ],
+          "text": "way networks have not demonstrated accuracy gains with\nextremely increased depth (e.g., over 100 layers).",
+          "reading_order": 0,
+          "tags": []
+        },
+        {
+          "label": "sec_1",
+          "bbox": [
+            54,
+            120,
+            210,
+            138
+          ],
+          "text": "3. Deep Residual Learning",
+          "reading_order": 1,
+          "tags": []
+        },
+        {
+          "label": "sec_2",
+          "bbox": [
+            54,
+            143,
+            178,
+            159
+          ],
+          "text": "3.1. Residual Learning",
+          "reading_order": 2,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            54,
+            165,
+            325,
+            355
+          ],
+          "text": "Let us consider $\\mathcal{H}(\\mathbf{x})$ as an underlying mapping to be\nfit by a few stacked layers (not necessarily the entire net),\nwith $\\mathbf{x}$ denoting the inputs to the first of these layers. If one\nhypothesizes that multiple nonlinear layers can asymptoti-\ncally approximate complicated functions$^{9}$ , then it is equiv-\nalent to hypothesize that they can asymptotically approxi-\nmate the residual functions, i.e., $\\mathcal{H}(\\mathbf{x}) - \\mathbf{x}$ (assuming that\nthe input and output are of the same dimensions). So\nrather than expect stacked layers to approximate $\\mathcal{H}(\\mathbf{x})$ , we\nexplicitly let these layers approximate a residual function\n$\\mathcal{F}(\\mathbf{x}) := \\mathcal{H}(\\mathbf{x}) - \\mathbf{x}$ . The original function thus becomes\n$\\mathcal{F}(\\mathbf{x}) + \\mathbf{x}$ . Although both forms should be able to asymptot-\nically approximate the desired functions (as hypothesized),\nthe ease of learning might be different.",
+          "reading_order": 3,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            54,
+            355,
+            325,
+            504
+          ],
+          "text": "This reformulation is motivated by the counterintuitive\nphenomena about the degradation problem (Fig. 1 , left). As\nwe discussed in the introduction, if the added layers can\nbe constructed as identity mappings, a deeper model should\nhave training error no greater than its shallower counter-\npart. The degradation problem suggests that the solvers\nneed to find a diffusion term appropriate for mapping\nby multiple nonlinear layers. With the residual error refor-\nmulation, if identity mappings are optimal, the solvers\nmay simply drive the weights of the multiple nonlinear lay-\ners toward zero to approach identity mappings.",
+          "reading_order": 4,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            54,
+            504,
+            325,
+            627
+          ],
+          "text": "In real cases, it is unlikely that identity mappings are op-\ntimal, but our reformulation may help to precondition the\nproblem. If the optimal function is closer to an identity\nmapping than to a zero mapping, it should be easier for the\nsolver to find the perturbations with reference to an identity\nmapping. This might be the case for the residual functions\nby experiments (Fig. 7 ) that the learned residual functions in\ngeneral have small responses, suggesting that identity map-\npings provide reasonable preconditioning.",
+          "reading_order": 5,
+          "tags": []
+        },
+        {
+          "label": "sec_2",
+          "bbox": [
+            54,
+            633,
+            238,
+            649
+          ],
+          "text": "3.2. Identity Mapping by Shortcut",
+          "reading_order": 6,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            54,
+            655,
+            325,
+            697
+          ],
+          "text": "We adopt residual learning to every few stacked layers.\nA building block is shown in Fig. 2 . Formally, in this paper\nwe consider a building block defined as:",
+          "reading_order": 7,
+          "tags": []
+        },
+        {
+          "label": "equ",
+          "bbox": [
+            136,
+            709,
+            323,
+            723
+          ],
+          "text": "$$y=\\mathcal{F}\\left(x,\\left\\{W_{i}\\right\\}\\right)+x.\\quad(1)$$",
+          "reading_order": 8,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            54,
+            732,
+            325,
+            788
+          ],
+          "text": "Here x and y are the input and output vectors of the lay-\ners considered. The function $\\mathcal{F}(x, W)$ represents the\nresidual mapping to be learned. For the example in Fig. 2 ,\nthat has two layers, $\\mathcal{F} = W_1 \\sigma(W_2 x)$ in which $\\sigma$ denotes",
+          "reading_order": 9,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            346,
+            83,
+            617,
+            137
+          ],
+          "text": "ReLU [29] and the biases are omitted for simplifying no-\ntations. The operation $\\mathcal{F}+x$ is performed by a shortcut\nconnection and element-wise addition. We adopt the sec-\nond nonlinearity after the addition (i.e., $\\sigma(y)$, see Fig. 2 ).",
+          "reading_order": 10,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            346,
+            137,
+            618,
+            232
+          ],
+          "text": "The shortcut connections in Eqn.(1) introduce neither ex-\ntra parameter nor computation complexity. This is not only\nattractive in practice but also important in our comparisons\nbetween plain and residual networks. We can fairly com-\nbine these advantages to get more advanced models with the\nsame number of parameters, depth, width, and computa-\ntional cost (except for the negligible element-wise addition).",
+          "reading_order": 11,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            346,
+            232,
+            618,
+            286
+          ],
+          "text": "The dimensions of $\\mathcal{X}$ and $\\mathcal{T}$ must be equal in Eqn.(1).\nIf this is not the case (e.g., when changing the input/output\nchannels), we can perform a linear projection $W_i$ by the\nshortcut connections to match the dimensions:",
+          "reading_order": 12,
+          "tags": []
+        },
+        {
+          "label": "equ",
+          "bbox": [
+            418,
+            296,
+            616,
+            311
+          ],
+          "text": "$$y=\\mathcal{F}\\left(x,\\left\\{W_{i}\\right\\}\\right)+W_{s} x,\\quad(2)$$",
+          "reading_order": 13,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            346,
+            322,
+            618,
+            378
+          ],
+          "text": "We can also use a square matrix $W_r$ in Eqn. (1). But we will\nshow by experiments that the identity mapping is sufficient\nfor addressing the degradation problem and is economical,\nand thus $W_r$ is only used when matching dimensions.",
+          "reading_order": 14,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            346,
+            379,
+            618,
+            446
+          ],
+          "text": "The form of the residual function $F$ is flexible. Exper-\niments in this paper involve a function $F$ that has two or\nthree parameters, and which is not simple. However,\n$F$ has only a single layer. Eqn. (1) is similar to a linear layer:\n$y = Wx + x$, for which we have not observed advantages.",
+          "reading_order": 15,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            346,
+            446,
+            618,
+            514
+          ],
+          "text": "We also note that although the above notations are about\nfully-connected layers for simplicity, they are applicable to\nconvolutional layers. The function $f_i(\\mathbf{w}_j,\\mathbf{v}_i)$ can be\nseen as an encoding of $\\mathbf{w}_j$ , and the reason is that each neu-\ntron is performed on two feature maps, channel by channel.",
+          "reading_order": 16,
+          "tags": []
+        },
+        {
+          "label": "sec_2",
+          "bbox": [
+            346,
+            521,
+            493,
+            537
+          ],
+          "text": "3.3. Network Architectures",
+          "reading_order": 17,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            346,
+            543,
+            618,
+            586
+          ],
+          "text": "We have tested various plain/residual nets, and have ob-\nserved consistent phenomena. To provide instances for dis-\ncussion, we describe two models for ImageNet as follows,",
+          "reading_order": 18,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            346,
+            591,
+            618,
+            753
+          ],
+          "text": "Plain Network. Our plain baselines (Fig. 3 , middle) are\nmainly inspired by the philosophy of VGG nets [40] (Fig. 3 ,\nleft). The convolutional layers mostly have 3×3 filters and\nfollow two simple design rules: (i') for the same output\nfeature map size, the layers have the same number of fil-\nters; and (ii) if the feature map size is halved, the num-\nber of filters is doubled so as to preserve the time com-\nplexity per layer. We perform downsampling directly by\nconvolutional layers that have a stride of 2. The network\nends with a global average pooling layer and a 1000-way-\nfully-connected layer with softmax. The total number of\nweighted layers is 34 in Fig. 3 (middle).",
+          "reading_order": 19,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            346,
+            753,
+            618,
+            808
+          ],
+          "text": "It is worth noting that our model has fewer filters and\nlower complexity than VGG nets [40] (Fig. 3 , left). Our 34-\nlayer baseline has 3.6 billion FLOPs (multiply-adds), which\nis only 18% of VGG-19 (9.6 billion FLOPs).",
+          "reading_order": 20,
+          "tags": []
+        },
+        {
+          "label": "fnote",
+          "bbox": [
+            66,
+            794,
+            293,
+            807
+          ],
+          "text": "$^{2}$This hypothesis, however, is still an open question. See [28].",
+          "reading_order": 21,
+          "tags": []
+        },
+        {
+          "label": "foot",
+          "bbox": [
+            337,
+            831,
+            354,
+            844
+          ],
+          "text": "772",
+          "reading_order": 22,
+          "tags": [
+            "page_num"
+          ]
+        }
+      ]
+    },
+    {
+      "page_number": 4,
+      "elements": [
+        {
+          "label": "fig",
+          "text": "![Figure](figures/page_6_page_004_figure_000.png)",
+          "figure_path": "figures/page_6_page_004_figure_000.png",
+          "bbox": [
+            53,
+            85,
+            327,
+            706
+          ],
+          "reading_order": 0,
+          "tags": []
+        },
+        {
+          "label": "cap",
+          "bbox": [
+            55,
+            714,
+            325,
+            789
+          ],
+          "text": "Figure 3. Example network architectures for ImageNet. Left: the\nViGG-19 model [40] (19.6 billion FLOPs) as a reference. Mid-\ndle: a plain network with 34 parameter layers (3.6 billion FLOPs).\nRight: a residual network with 34 parameter layers (3.6 billion\nFLOPs). The dotted shortcuts increase dimensions. Table 1 shows\nmore details and other variants.",
+          "reading_order": 1,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            346,
+            83,
+            618,
+            259
+          ],
+          "text": "Residual Network. Based on the above plain network, we\ninsert shortcut connections (Fig. 3 , right) which turn the\nnetwork into its counterpart residual version. The identity\nshortcuts (Eqn.(1) can be directly used when the input and\noutput are of the same dimensions (solid line shortcuts in\nFig. 3 ). When the dimensions increase (dotted line shortcuts\nin Fig. 5 ), we consider two options: (A) The shortcut still\nworks but the performance is slightly worse due to the loss\nfor increasing dimensions. This option introduces no extra\nparameter; (B) The projection shortcut in Eqn.(2) is used to\nmatch dimensions (done by $1 \\times 1$ convolutions). For both\noptions, when the shortcuts go across feature maps of two\nsizes, they are performed with a stride of 2.",
+          "reading_order": 2,
+          "tags": []
+        },
+        {
+          "label": "sec_2",
+          "bbox": [
+            347,
+            265,
+            453,
+            281
+          ],
+          "text": "3.4. Implementation",
+          "reading_order": 3,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            347,
+            286,
+            618,
+            477
+          ],
+          "text": "Our implementation for ImageNet follows the practice\nin [21, 40] . The image is resized with its shorter side ran-\ndomly sampled in $[256, 480]$ for scale augmentation [40] .\nA $224 \\times 224$ crop is randomly sampled from an image or its\nhorizontal flip, with the per-pixel mean subtracted [21] . The\nstandard color augmentation in [21] is used. We adopt batch\nnormalization (BN) [16] right after each convolution and\nbefore activation, following [16] . We initialize the weights\nas in [12] and train all plain/residual nets from scratch. We\nuse SGD with a mini-batch size of 256. The learning rate\nstarts from 0.1 and is divided by 10 when the error plateaus,\nand the models are trained for up to $60 \\times 10^4$ iterations. We\nuse a weight decay of 0.0001 and a momentum of 0.9. We\ndo not use dropout [13] , following the practice in [16] .",
+          "reading_order": 4,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            347,
+            477,
+            618,
+            543
+          ],
+          "text": "In testing, for comparison studies we adopt the standard\n10-copy testing [21] . For best results, we adopt the fully-\nformal form [40, 48, 12] , and average the scores\nat multiple settings were averaged such that the shorter\nside is $\\{22, 256, 384, 489, 640\\}$ .",
+          "reading_order": 5,
+          "tags": []
+        },
+        {
+          "label": "sec_1",
+          "bbox": [
+            347,
+            553,
+            437,
+            571
+          ],
+          "text": "4. Experiments",
+          "reading_order": 6,
+          "tags": []
+        },
+        {
+          "label": "sec_2",
+          "bbox": [
+            347,
+            577,
+            498,
+            593
+          ],
+          "text": "4.1. ImageNet Classification",
+          "reading_order": 7,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            347,
+            597,
+            617,
+            680
+          ],
+          "text": "We evaluate our method on the ImageNet 2012 classifi-\ncation dataset [35] that consists of 1000 classes. The models\nare trained on the 1.28 million training images, and evalu-\nated on the 50k validation images. We also obtain a final\nresult on the 100k test images, reported by the test server.\nWe evaluate both top-1 and top-5 error rates.",
+          "reading_order": 8,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            347,
+            685,
+            617,
+            740
+          ],
+          "text": "Plain Networks. We first evaluate 18-layer and 34-layer\nplain nets. The 34-layer plain net is in Fig. 3 (middle). The\n18-layer plain net is of a similar form. See Table 1 for de-\ntailed architectures.",
+          "reading_order": 9,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            347,
+            740,
+            618,
+            808
+          ],
+          "text": "The results in Table 2 show that the deeper 34-layer plain\nnet has higher validation error than the shallower 18-layer\nplain net. To reveal the reason, in Fig. 7 (left) we com-\npare it with another convolutional network and the indi-\ncedure. We have observed the degradation problem + the",
+          "reading_order": 10,
+          "tags": []
+        },
+        {
+          "label": "foot",
+          "bbox": [
+            337,
+            858,
+            353,
+            871
+          ],
+          "text": "1",
+          "reading_order": 11,
+          "tags": [
+            "page_num"
+          ]
+        }
+      ]
+    },
+    {
+      "page_number": 5,
+      "elements": [
+        {
+          "label": "tab",
+          "bbox": [
+            141,
+            81,
+            529,
+            249
+          ],
+          "text": "<table><tr><td>layer name</td><td>output size</td><td>18-layer</td><td>34-layer</td><td>50-layer</td><td>101-layer</td><td>152-layer</td></tr><tr><td>conv1</td><td>112×112</td><td colspan=\"5\">3×3 mat.</td></tr><tr><td rowspan=\"3\">conv2.5</td><td rowspan=\"3\">56×56</td><td>[3×3, 64]</td><td>[3×3, 64]</td><td>[3×3, 64]</td><td>[3×3, 64]</td><td>[3×3, 64]</td></tr><tr><td>[3×3, 64]</td><td>[3×3, 64]</td><td>[3×3, 64]</td><td>[3×3, 64]</td><td>[3×3, 64]</td></tr><tr><td>&lt;2</td><td>&lt;2</td><td>&lt;2</td><td>&lt;2</td><td>&lt;2</td></tr><tr><td rowspan=\"3\">conv3.5</td><td rowspan=\"3\">28×28</td><td>[3×3, 128]</td><td>[3×3, 128]</td><td>[3×3, 128]</td><td>[3×3, 128]</td><td>[3×3, 128]</td></tr><tr><td>[3×3, 128]</td><td>[3×3, 128]</td><td>[3×3, 128]</td><td>[3×3, 128]</td><td>[3×3, 128]</td></tr><tr><td>&lt;2</td><td>&lt;2</td><td>&lt;2</td><td>&lt;2</td><td>&lt;2</td></tr><tr><td rowspan=\"3\">conv4.5</td><td rowspan=\"3\">14×14</td><td>[3×3, 256]</td><td>[3×3, 256]</td><td>[3×3, 256]</td><td>[3×3, 256]</td><td>[3×3, 256]</td></tr><tr><td>[3×3, 256]</td><td>[3×3, 256]</td><td>[3×3, 256]</td><td>[3×3, 256]</td><td>[3×3, 256]</td></tr><tr><td>&lt;2</td><td>&lt;2</td><td>&lt;2</td><td>&lt;2</td><td>&lt;2</td></tr><tr><td rowspan=\"3\">conv5.5</td><td rowspan=\"3\">7×7</td><td>[3×3, 512]</td><td>[3×3, 512]</td><td>[3×3, 512]</td><td>[3×3, 512]</td><td>[3×3, 512]</td></tr><tr><td>[3×3, 512]</td><td>[3×3, 512]</td><td>[3×3, 512]</td><td>[3×3, 512]</td><td>[3×3, 512]</td></tr><tr><td>&lt;2</td><td>&lt;2</td><td>&lt;2</td><td>&lt;2</td><td>&lt;2</td></tr><tr><td>FLOPs</td><td>1×1</td><td>1.8×10^3</td><td>3.6×10^3</td><td>5.8×10^3</td><td>7.6×10^3</td><td>11.3×10^3</td></tr></table>",
+          "reading_order": 0,
+          "tags": []
+        },
+        {
+          "label": "cap",
+          "bbox": [
+            53,
+            252,
+            617,
+            279
+          ],
+          "text": "Table 1. Architectures for ImageNet: Building blocks are shown in brackets (see also Fig. 5), with the numbers of blocks stacked. Down-\nsampling is performed by conv3, conv4, 1, and conv5 with a stride of 2.",
+          "reading_order": 1,
+          "tags": []
+        },
+        {
+          "label": "fig",
+          "text": "![Figure](figures/page_6_page_005_figure_002.png)",
+          "figure_path": "figures/page_6_page_005_figure_002.png",
+          "bbox": [
+            94,
+            283,
+            574,
+            440
+          ],
+          "reading_order": 2,
+          "tags": []
+        },
+        {
+          "label": "cap",
+          "bbox": [
+            54,
+            442,
+            617,
+            480
+          ],
+          "text": "Figure 4. Training on ImageNet. This curve denotes training error, and bold curves denote validation error of the center crop. Left: plain\nresiduals for all four layers; Right: ResNets of 18 and 54 layers. In this plot, the residual networks have no extra parameters compared to\ntheir plain counterparts.",
+          "reading_order": 3,
+          "tags": []
+        },
+        {
+          "label": "tab",
+          "bbox": [
+            104,
+            501,
+            270,
+            541
+          ],
+          "text": "<table><tr><td></td><td>plain</td><td>ResNet</td></tr><tr><td>18 layers</td><td>39.05</td><td>40.6</td></tr><tr><td>34 layers</td><td>28.54</td><td>25.03</td></tr></table>",
+          "reading_order": 4,
+          "tags": []
+        },
+        {
+          "label": "cap",
+          "bbox": [
+            54,
+            547,
+            325,
+            586
+          ],
+          "text": "Table 2. Top-1 error ( % ) -10-cp test results on ImageNet validation.\nTop-1 error is the average value of all the columns excepting for their plain\ncounterparts. Fig. 4 shows the training procedures.",
+          "reading_order": 5,
+          "tags": []
+        },
+        {
+          "label": "half_para",
+          "bbox": [
+            54,
+            615,
+            325,
+            670
+          ],
+          "text": "34-layer plain net has higher training error throughout the\nwhole training procedure, even though the solution space\nof the 18-layer plain network is a subspace of that of the\n34-layer one.",
+          "reading_order": 6,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            54,
+            672,
+            325,
+            809
+          ],
+          "text": "We argue that this optimization difficulty is unlikely to\nbe caused by vanishing gradients. These plain networks are\ntrained with BN [16] , which ensures forward propagated\nsignals to have non-zero variances. We also verify that the\nbackward propagated gradients exhibit healthy norms with\nBN. So neither forward nor backward signals vanish. In\nfact, the 34-layer plain net is still able to achieve compet-\nitive accuracy (Table 3 ), suggesting that the solver works\nto some extent. We conjecture that the deep plain nets may\nhave exponentially low convergence rates, which impact the",
+          "reading_order": 7,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            346,
+            500,
+            617,
+            530
+          ],
+          "text": "reducing of the training error). The reason for such opti-\nmization difficulties will be studied in the future.",
+          "reading_order": 8,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            346,
+            535,
+            618,
+            644
+          ],
+          "text": "Residual Networks. Next we evaluate 18-layer and 34-\nlayer residual nets (ResNets). The baseline architectures\nare the same as the above plain nets, expect that a shortcut\nconnection is added to each pair of 3 $\\times$ 3 filters as in Fig. 3\n(right). In the first comparison (Table 2 and Fig. 4 right),\nwe use identity mapping for all shortcuts and zero-padding\nfor increasing dimensions (option A), so they have no extra\nparameter compared to the plain counterparts.",
+          "reading_order": 9,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            346,
+            644,
+            618,
+            752
+          ],
+          "text": "We have three major observations from Table 2 and\nFig. 4 . First, the situation is reversed with residual learn-\ning – the 34-layer ResNet is better than the 18-layer ResNet\n(by 2.8 % ). More importantly, the 34-layer ResNet exhibits\nconsiderably lower training error and is generalizable to the\nvalidation data. This indicates that the degradation problem\nis well addressed in this setting and we manage to obtain\naccuracy gains from increased depth.",
+          "reading_order": 10,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            358,
+            752,
+            617,
+            767
+          ],
+          "text": "Second, compared to its plain counterpart, the 34-layer",
+          "reading_order": 11,
+          "tags": []
+        },
+        {
+          "label": "fnote",
+          "bbox": [
+            347,
+            772,
+            617,
+            807
+          ],
+          "text": "We have experimented with more training iterations (3×3) and still ob-\nserve the degradation problems suggesting that this problem cannot be\nfeasibly solved by just having more training iterations.",
+          "reading_order": 12,
+          "tags": []
+        },
+        {
+          "label": "foot",
+          "bbox": [
+            336,
+            831,
+            355,
+            843
+          ],
+          "text": "774",
+          "reading_order": 13,
+          "tags": [
+            "page_num"
+          ]
+        }
+      ]
+    },
+    {
+      "page_number": 6,
+      "elements": [
+        {
+          "label": "tab",
+          "bbox": [
+            99,
+            82,
+            280,
+            234
+          ],
+          "text": "<table><tr><td>model</td><td>top-1 err.</td><td>top-5 err.</td></tr><tr><td>VGG-16 [40]</td><td>28.07</td><td>9.33</td></tr><tr><td>GoogleNet [43]</td><td>—</td><td>9.15</td></tr><tr><td>PreLeNet-U [12]</td><td>24.27</td><td>7.38</td></tr><tr><td>plain-34</td><td>28.54</td><td>10.02</td></tr><tr><td>ResNet-34-A</td><td>25.03</td><td>7.76</td></tr><tr><td>ResNet-34-B</td><td>24.52</td><td>7.46</td></tr><tr><td>ResNet-34-C</td><td>24.40</td><td>7.39</td></tr><tr><td>ResNet-50</td><td>22.85</td><td>6.71</td></tr><tr><td>ResNet-101</td><td>21.75</td><td>6.05</td></tr><tr><td>ResNet-152</td><td>21.43</td><td>5.71</td></tr></table>",
+          "reading_order": 0,
+          "tags": []
+        },
+        {
+          "label": "cap",
+          "bbox": [
+            55,
+            240,
+            325,
+            279
+          ],
+          "text": "Table 3. Error rates ( % )-10-rpc test) on ImageNet validation.\nNumber of steps is chosen as the number of steps chosen of option B\nthat only uses projections for increasing dimensions.",
+          "reading_order": 1,
+          "tags": []
+        },
+        {
+          "label": "tab",
+          "bbox": [
+            68,
+            287,
+            293,
+            439
+          ],
+          "text": "<table><tr><td>method</td><td>top-1 err.</td><td>top-5</td></tr><tr><td>VGG [40] (ILSVRC'14)</td><td>-</td><td>8.43</td></tr><tr><td>GoogLeNet [43] (ILSVRC'14)</td><td>-</td><td>7.89</td></tr><tr><td>VGG [40] (v5)</td><td>24.4</td><td>7.1</td></tr><tr><td>PReLU-net [12]</td><td>21.59</td><td>5.7</td></tr><tr><td>BN-incoption [16]</td><td>21.99</td><td>5.8</td></tr><tr><td>ResNet-34 B</td><td>21.84</td><td>5.77</td></tr><tr><td>ResNet-34 C</td><td>21.53</td><td>5.66</td></tr><tr><td>ResNet-100</td><td>20.74</td><td>5.2</td></tr><tr><td>ResNet-101</td><td>19.87</td><td>4.66</td></tr><tr><td>ResNet-152</td><td>19.38</td><td>4.48</td></tr></table>",
+          "reading_order": 2,
+          "tags": []
+        },
+        {
+          "label": "cap",
+          "bbox": [
+            55,
+            445,
+            325,
+            472
+          ],
+          "text": "Table 4. Error rates (%) of single-model results on the ImageNet\nvalidation set (except reported on the test set).",
+          "reading_order": 3,
+          "tags": []
+        },
+        {
+          "label": "tab",
+          "bbox": [
+            72,
+            480,
+            311,
+            579
+          ],
+          "text": "<table><tr><td>method</td><td>top-5 err. (test)</td></tr><tr><td>VGG [40] (ILSVRC'14)</td><td>7.32</td></tr><tr><td>GoogLeNet [43] (ILSVRC'14)</td><td>6.66</td></tr><tr><td>VGG [40] (v5)</td><td>6.8</td></tr><tr><td>PReLU-net [12]</td><td>4.94</td></tr><tr><td>BN-inception [16]</td><td>4.82</td></tr><tr><td>ResNet (ILSVRC'15)</td><td>3.57</td></tr></table>",
+          "reading_order": 4,
+          "tags": []
+        },
+        {
+          "label": "cap",
+          "bbox": [
+            55,
+            584,
+            325,
+            610
+          ],
+          "text": "Table 5. Error rates (%) of ensembles . The top-5 error is on the\ntest set of ImageNet and reported by the test server.",
+          "reading_order": 5,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            55,
+            634,
+            326,
+            689
+          ],
+          "text": "ResNet reduces the top-1 error by 3.5 % (Table 2 ), resulting\nfrom the successfully reduced training error (Fig. 4 right vs.\nleft). This comparison verifies the effectiveness of residual\nlearning on extremely deep systems.",
+          "reading_order": 6,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            55,
+            689,
+            326,
+            786
+          ],
+          "text": "Last, we also note that the 18-layer plain-residual nets\nare comparably accurate (Table 2 ), but the 18-layer ResNet\nconverges faster (Fig. 4 right vs. left). When the net is \"not\noverly deep\" (18 layers here), the current SGD solver is still\nrelatively insensitive to the plain net. In this case, the\nResNet eases the optimization by providing faster conver-\ngence at the early stage.",
+          "reading_order": 7,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            55,
+            792,
+            326,
+            808
+          ],
+          "text": "Identity vs. Projection Shortcuts. We have shown that",
+          "reading_order": 8,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            346,
+            230,
+            618,
+            326
+          ],
+          "text": "parameter-free, identity shortcuts help with learning. Next\nwe investigate projection shortcuts (Eqn.(2)). In Table 3 we\ncompare three options: (A) zero-padding shortcuts are used\nfor increasing dimensions, and all shortcuts are parameter-\nized; (B) one or two parameters are used for increasing dimen-\nsion shortcuts are used for increasing dimensions, and other\nshortcuts are identity; and (C) all shortcuts are projections.",
+          "reading_order": 9,
+          "tags": []
+        },
+        {
+          "label": "fig",
+          "text": "![Figure](figures/page_6_page_006_figure_010.png)",
+          "figure_path": "figures/page_6_page_006_figure_010.png",
+          "bbox": [
+            377,
+            80,
+            605,
+            165
+          ],
+          "reading_order": 10,
+          "tags": []
+        },
+        {
+          "label": "cap",
+          "bbox": [
+            346,
+            175,
+            617,
+            214
+          ],
+          "text": "Figure 5: A deeper residual function $F$ for ImageNet, Left: self-attention\nblock, Right: “a bottleneck” build-on block for ResNet-50v1 [152]",
+          "reading_order": 11,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            346,
+            327,
+            618,
+            489
+          ],
+          "text": "Table 3 shows that all three options are considerable bet-\nter than the plain counterpart. B is slightly better than A. We\nargue that this is because the zero-padded dimensions in A\nindeed have no residual learning. C is marginally better than\nB, and we attribute this to the extra parameters introduced\nby many (thirteen) projection shortcuts. But the small dif-\nferences among A/B/C indicate that projection shortcuts are\nnot essential for addressing the degradation problem. So we\ndo not use option C in the rest of this paper, to reduce mem-\nory/time complexity and model sizes. Identify shortcuts are\nparticularly important for not increasing the complexity of\nthe bottleneck architectures that are introduced below.",
+          "reading_order": 12,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            346,
+            495,
+            618,
+            632
+          ],
+          "text": "Deeper Bottleneck Architectures. Next we describe our\ndeeper nets for ImageNet. Because of concerns on the train-\ning time that we can afford, we modify the building block\nas a bottleneck design $^4$ . For each residual function $\\mathcal{F}$ , we\nuse a stack of 3 layers instead of 2 (Fig. 5 ). The three layers\nare $1 \\times 1, 3 \\times 3$ , and $1 \\times 1$ convolutions, where the $1 \\times 1$ layers\nare responsible for reducing and then increasing (restoring)\ndimensions, leaving the $3 \\times 3$ layer a bottleneck with smaller\ninput/output dimensions. Fig. 5 shows an example, where\nboth designs have similar time complexity.",
+          "reading_order": 13,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            346,
+            632,
+            618,
+            727
+          ],
+          "text": "The parameter-free identity shortcuts are particularly im-\nportant for the bottleneck architectures. If the identity short-\ncut in Fig. 5 (right) is replaced with projection, one can\nshow that the time complexity and model size are doubled,\nand the computation time is doubled compared to the two high-dimensional\nends. So identity shortcuts lead to more efficient models\nfor the bottleneck designs.",
+          "reading_order": 14,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            346,
+            727,
+            617,
+            742
+          ],
+          "text": "ResNet-50:",
+          "reading_order": 15,
+          "tags": []
+        },
+        {
+          "label": "fnote",
+          "bbox": [
+            346,
+            752,
+            617,
+            807
+          ],
+          "text": "$^{*}$Deeper non-bottleneck ResNets (e.g., Fig. 5 left) also gain accuracy\nfrom increased depth (as shown in CIFAR-10), but are not as economical\nas the bottleneck ResNets. So the usage of bottleneck designs is mainly due\nto the breadth and complexity of the task and the hard computational problems\nof plain nets is also witnessed for the bottleneck design.",
+          "reading_order": 16,
+          "tags": []
+        },
+        {
+          "label": "foot",
+          "bbox": [
+            336,
+            858,
+            355,
+            871
+          ],
+          "text": "1",
+          "reading_order": 17,
+          "tags": [
+            "page_num"
+          ]
+        }
+      ]
+    },
+    {
+      "page_number": 7,
+      "elements": [
+        {
+          "label": "half_para",
+          "bbox": [
+            54,
+            81,
+            325,
+            123
+          ],
+          "text": "34-layer net with this 3-layer bottleneck block, resulting in\na 50-layer ResNet (Table 1). We option B for increasing\ndimensions. This model has 3.8 billion FLOPs.",
+          "reading_order": 0,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            54,
+            123,
+            325,
+            204
+          ],
+          "text": "101-layer and 152-layer ResNets: We construct 101-\nlayer and 152-layer ResNets by using more 3-layer blocks\n(Table 1 ). Remarkably, although the depth is significantly\nincreased, the 152-layer ResNet (11.3 billion FLOPs) still\nhas lower complexity than VGG-16/19 nets (15.3/19.6 bil-\nlion FLOPs).",
+          "reading_order": 1,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            54,
+            205,
+            325,
+            287
+          ],
+          "text": "The 50/101/152-level ResNets are more accurate than\nthe 34-layer ones by considerable margins (Table 3 and 4 ).\nWe do not observe the degradation problem and thus en-\njoy significant accuracy gains from considerably increased\ndepth. The benefits of depth are witnessed for all evaluation\nmetrics (Table 3 and 4 ).",
+          "reading_order": 2,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            54,
+            292,
+            325,
+            429
+          ],
+          "text": "Comparisons with State-of-the-art Methods. In Table 4 ,\nwe compare with the previous best single-model results.\nOur baseline 34-layer ResNets have achieved very compet-\nitive accuracy. Our 152-layer ResNet has a single-model\ntop-5 validation error of 4.49 % . This single-model result\noutperforms all previous ensemble results (Table 5 ). We\ncombine six models of different depth to form an ensemble\n(only with two 152-layer ones at the time of submitting).\nThis leads to 3.57 % top-5 error on the test set (Table 5 ).\nThis entry won the 1st place in ISL/RVC 2015.",
+          "reading_order": 3,
+          "tags": []
+        },
+        {
+          "label": "sec_2",
+          "bbox": [
+            54,
+            438,
+            206,
+            454
+          ],
+          "text": "4.2. CIFAR-10 and Analysis",
+          "reading_order": 4,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            54,
+            460,
+            325,
+            554
+          ],
+          "text": "We conducted more studies on the CIFAR-10 dataset\n[20] , which consists of 50k training images and 10k test-\ning images in 10 classes. We present experiments trained\non the training set and evaluated on the test set. Our focus\nis on the behaviour of extremely deep networks, but not on\npushing the state-of-the-art results, so we intentionally use\nsimple architectures as follows:",
+          "reading_order": 5,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            54,
+            555,
+            325,
+            705
+          ],
+          "text": "The plain/residual architectures follow the foll in Fig. 3\n(middle/right). The network inputs are $32 \\times 32$ images, with\nthe per-pixel mean subtracted. The first layer is $3 \\times 3$ convo-\nlutions. Then we use a stack of $6n$ layers with $3 \\times 3$ convo-\nlutions on the feature maps of $(32 \\times 32)_{i,j}$ respectively,\nwith $2n$ layers for each feature map size. The numbers of\nlayers are chosen such that the weight of the first layer is\nformed by convolution with a stride of 2. The network ends\nwith a global average pooling, a $10\\sqrt{2}$ -fully-connected\nlayer, and softmax. There are totally $6n+2$ stacked weighted\nlayers. The following table summarizes the architecture:",
+          "reading_order": 6,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            346,
+            343,
+            617,
+            370
+          ],
+          "text": "so our residual models have exactly the same depth, width,\nand number of parameters as the plain counterparts.",
+          "reading_order": 7,
+          "tags": []
+        },
+        {
+          "label": "tab",
+          "bbox": [
+            89,
+            715,
+            292,
+            757
+          ],
+          "text": "<table><tr><td>output map size</td><td>32×32</td><td>16×16</td><td>8×8</td></tr><tr><td># layers</td><td>1+2n</td><td>2n</td><td>2n</td></tr><tr><td># filters</td><td>16</td><td>32</td><td>64</td></tr></table>",
+          "reading_order": 8,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            54,
+            766,
+            325,
+            808
+          ],
+          "text": "When shortcut connections are used, they are connected\nto the pairs of 3×3 layers (totally 3n shortcuts). On this\ndataset we use identity shortcuts in all cases (i.e., option A),",
+          "reading_order": 9,
+          "tags": []
+        },
+        {
+          "label": "tab",
+          "bbox": [
+            349,
+            82,
+            613,
+            273
+          ],
+          "text": "<table><tr><td></td><td colspan=\"2\">method</td><td>error (%)</td></tr><tr><td></td><td>Maxout [9]</td><td></td><td>9.38</td></tr><tr><td></td><td>NIN [25]</td><td></td><td>8.81</td></tr><tr><td></td><td>DSN [24]</td><td></td><td>8.22</td></tr><tr><td></td><td># layers</td><td># params</td><td></td></tr><tr><td>FitNet [34]</td><td>19</td><td>2.5M</td><td>8.39</td></tr><tr><td>Highway [41, 42]</td><td>19</td><td>2.3M</td><td>7.54 (7.72±0.16)</td></tr><tr><td>Highway [41, 42]</td><td>32</td><td>1.25M</td><td>8.80</td></tr><tr><td>ResNet</td><td>20</td><td>0.27M</td><td>8.75</td></tr><tr><td>ResNet</td><td>32</td><td>0.46M</td><td>7.51</td></tr><tr><td>ResNet</td><td>44</td><td>0.66M</td><td>7.17</td></tr><tr><td>ResNet</td><td>56</td><td>0.85M</td><td>6.97</td></tr><tr><td>ResNet</td><td>110</td><td>1.7M</td><td>6.43 (6.61±0.16)</td></tr><tr><td>ResNet</td><td>1202</td><td>19.4M</td><td>7.93</td></tr></table>",
+          "reading_order": 10,
+          "tags": []
+        },
+        {
+          "label": "cap",
+          "bbox": [
+            346,
+            283,
+            617,
+            323
+          ],
+          "text": "Table 6. Classification error on the CIFAR-10 set. All meth-\nods are chosen as [2] . The results are averaged. $\\bar{x}$ means\nand show “ best mean±std ” as in [42] .",
+          "reading_order": 11,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            346,
+            371,
+            618,
+            519
+          ],
+          "text": "We use a weight decay of 0.0001 and momentum of 0.9,\nand adopt the weight initialization in [12] and BN [16] but\nwith no dropout. These models are trained with a mini-\nbatch size of 128 on two GPUs. We start with a learning\nrate of 0.1, divide it by 10 at 32x and 48x iterations, and\nterminate training at 64k iterations, which is determined on\na 64x32k spatial split. During the data augmentation proce-\ndure [24] , we randomly assign 4 pixels elements from each\nand a 32x32 crop is randomly sampled from the padded\nimage or its horizontal flip. For testing, we only evaluate\nthe single view of the original 32x32 image.",
+          "reading_order": 12,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            346,
+            519,
+            618,
+            614
+          ],
+          "text": "We compare $\\pi=\\{3,5,7,9\\}$ , leading to 20, 32, 44, and\n56-layer networks. Fig. 6 (left) shows the behaviour of the\nplain nets. The deep plain nets suffer from increased depth,\nand exhibit higher training error when going deeper. This\nis because the models are deeper than these plain nets and\non MNIST (see [41] ), so that on ImageNet (Fig. 4 , left) and\non MNIST (see [41] ), it is hard that such an optimization\ndifficulty is a fundamental problem.",
+          "reading_order": 13,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            346,
+            614,
+            617,
+            668
+          ],
+          "text": "Fig. 6 (middle) shows the behaviors of ResNets. Also,\nsimilar to the ImageNet cases (Fig. 4 , right), our ResNets\nmanage to overcome the optimization difficulty and demon-\nstrate accuracy gains when the depth increases.",
+          "reading_order": 14,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            346,
+            668,
+            618,
+            777
+          ],
+          "text": "We further explore $n=18$ that leads to a 110-layer\nResNet. In this case, we find that the initial learning rate\nof 0.1 is slightly too large to start converging. $^3$ So we use\n0.01 to warm up the training until the training error is below\n80 % (about 400 iterations), and then go back to 0.1 and con-\ntinue training. The rest of the learning schedule is as done\npreviously. This 110-layer network converges well (Fig. 6 ,\nmiddle). It has fewer parameters than other deep and thin",
+          "reading_order": 15,
+          "tags": []
+        },
+        {
+          "label": "fnote",
+          "bbox": [
+            347,
+            784,
+            617,
+            808
+          ],
+          "text": "With an initial learning rate of 0.1, it starts converging (<90% error)\nafter several epochs, but still reaches similar accuracy.",
+          "reading_order": 16,
+          "tags": []
+        },
+        {
+          "label": "foot",
+          "bbox": [
+            337,
+            829,
+            354,
+            841
+          ],
+          "text": "776",
+          "reading_order": 17,
+          "tags": [
+            "page_num"
+          ]
+        }
+      ]
+    },
+    {
+      "page_number": 8,
+      "elements": [
+        {
+          "label": "fig",
+          "text": "![Figure](figures/page_6_page_008_figure_000.png)",
+          "figure_path": "figures/page_6_page_008_figure_000.png",
+          "bbox": [
+            111,
+            80,
+            562,
+            194
+          ],
+          "reading_order": 0,
+          "tags": []
+        },
+        {
+          "label": "cap",
+          "bbox": [
+            53,
+            195,
+            617,
+            220
+          ],
+          "text": "Figure 6. Training on CIFAR-10 . Dashed lines denote training error, and bold lines denote testing error. Left : plain networks. The error\nof plan-110 is higher than 60 % and not displayed. Middle : ResNets. Right : ResNets with 110 and 1202 layers.",
+          "reading_order": 1,
+          "tags": []
+        },
+        {
+          "label": "fig",
+          "text": "![Figure](figures/page_6_page_008_figure_002.png)",
+          "figure_path": "figures/page_6_page_008_figure_002.png",
+          "bbox": [
+            68,
+            240,
+            297,
+            370
+          ],
+          "reading_order": 2,
+          "tags": []
+        },
+        {
+          "label": "cap",
+          "bbox": [
+            53,
+            370,
+            325,
+            420
+          ],
+          "text": "Figure 7. Standard deviations (std) of layer responses on CIFAR-\n10. The responses are the outputs of each $3 \\times 3$ layer, after BN and\nbefore nonlinearity. Top: the layers are shown in their original\norder. Bottom: the responses are ranked in descending order.",
+          "reading_order": 3,
+          "tags": []
+        },
+        {
+          "label": "half_para",
+          "bbox": [
+            54,
+            440,
+            325,
+            470
+          ],
+          "text": "networks such as FitNet [34] and Highway [41] (Table 6 ),\n yet is among the state-of-the-art results (6.43%, Table 6 ).",
+          "reading_order": 4,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            54,
+            475,
+            326,
+            666
+          ],
+          "text": "Analysis of Layer Responses. Fig. 7 shows the standard\ndeviations (std) of the layer responses. The responses are\nthe outputs of each 3 $\\times$ 3 layer, after BN and before other\nnonlinearity (ReLU/addition). For ResNets, this analy-\nsis reveals the response strength of the residual functions.\nFig. 7 shows that ResNets have generally smaller responses\nthan their plain counterparts. These results support our ba-\nsic motivation (Sec. 3.1 ) that the residual functions might\nbe generally closer to zero than the non-residual functions.\nWe also notice that the deeper ResNet has smaller magni-\ntudes of responses, as evidenced by the comparisons among\nResNet-20, 56, and 110 in Fig. 7 . When there are more\nlayers, an individual layer of ResNets tends to modify the\nsignal less.",
+          "reading_order": 5,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            54,
+            672,
+            326,
+            767
+          ],
+          "text": "Exploring Over 1000 layers. We explore an aggressively\ndeep model of over 1000 layers. We set $n=200$ that\nleads to a 1,202-layer network, which is trained as described\nabove. Our method shows no optimization difficulty , and\na 10 % lower layer network is able to achieve training error\n<0.1 % (Figure 7 , right). Its test error is still fairly good\n(7.93 % , Table 6 ).",
+          "reading_order": 6,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            54,
+            766,
+            326,
+            807
+          ],
+          "text": "But there are still open problems on, such asgressively\ndecreasing the层数 of network nodes and making it\nworse than that of our 10-layer network, although both",
+          "reading_order": 7,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            347,
+            425,
+            618,
+            563
+          ],
+          "text": "have similar training error. We argue that this is because of\noverfitting. The 1202-layer network may be unnecessarily\nlarge (19-4M) for this small dataset. Strong regularization\nsuch as maxout/dropout [13] is applied to obtain the\nbest results (9, 28, 24, 30) in this dataset. In this paper, we\nuse no maxout/dropout and just simply impose regulariza-\ntion via deep and thin architectures by design, without dis-\ntracting from the focus on the difficulties of optimization.\nBut combining with stronger regularization may improve\nresults, which we will study in the future.",
+          "reading_order": 8,
+          "tags": []
+        },
+        {
+          "label": "tab",
+          "bbox": [
+            379,
+            241,
+            586,
+            294
+          ],
+          "text": "<table><tr><td>training data</td><td>07+12</td><td>07+12</td></tr><tr><td>test data</td><td>VOC 07 test</td><td>VOC 12 test</td></tr><tr><td>VGG-16</td><td>73.2</td><td>70.4</td></tr><tr><td>ResNet-101</td><td>76.4</td><td>73.8</td></tr></table>",
+          "reading_order": 9,
+          "tags": []
+        },
+        {
+          "label": "cap",
+          "bbox": [
+            347,
+            297,
+            617,
+            336
+          ],
+          "text": "Table 7: Object detection mAP (%) on the PASCAL VOC\ntest sets with baseline Faster R-CNN. See also ap-\npendix for results result.",
+          "reading_order": 10,
+          "tags": []
+        },
+        {
+          "label": "tab",
+          "bbox": [
+            383,
+            341,
+            581,
+            381
+          ],
+          "text": "<table><tr><td>metric</td><td>mAP@0.5</td><td>mAP@0.5, 5, 95</td></tr><tr><td>Faster R-CNN</td><td>33.6</td><td>46.8</td></tr><tr><td>R-Net-101</td><td>48.4</td><td>27.2</td></tr></table>",
+          "reading_order": 11,
+          "tags": []
+        },
+        {
+          "label": "cap",
+          "bbox": [
+            347,
+            385,
+            617,
+            411
+          ],
+          "text": "Table 8. Object detection mAP (%) on the COCO validation set\nusing baseline Faster RCNN. See also appendix for better results.",
+          "reading_order": 12,
+          "tags": []
+        },
+        {
+          "label": "sec_2",
+          "bbox": [
+            347,
+            569,
+            613,
+            586
+          ],
+          "text": "4.3. Object Detection on PASCAL and MS COCO",
+          "reading_order": 13,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            347,
+            590,
+            618,
+            754
+          ],
+          "text": "Our method has good generalization performance on\nother recognition tasks. Table 7 and 8 show the object de-\ntection baseline results on PASCAL VOC 2007 and 2012\n[5] and COCO [26] . We adopt Faster R-CNN [32] as the de-\ntection method. Here we are interested in the improvements\nof replacing VGG-16 [40] with ResNet-101. The detection\nimplementation (see appendix) of using both models is the\nsame, so the gains can only be attributed to better networks.\nMost remarkably, on the challenging COCO dataset we ob-\ntain a 6.0 % increase in COCO's standard metric (mAP@[.5,\n.95]), which is a 28 % relative improvement. This gain is\nsolely due to the learned representations.",
+          "reading_order": 14,
+          "tags": []
+        },
+        {
+          "label": "para",
+          "bbox": [
+            347,
+            754,
+            617,
+            807
+          ],
+          "text": "Based on deep residual nets, we won the 1st places in\nseveral tracks in ISLVRC & COCO 2015 competitions: Im-\nageNet detection, ImageNet localization, COCO detection,\nand COCO segmentation. The details are in the appendix.",
+          "reading_order": 15,
+          "tags": []
+        },
+        {
+          "label": "foot",
+          "bbox": [
+            336,
+            859,
+            354,
+            872
+          ],
+          "text": "1",
+          "reading_order": 16,
+          "tags": [
+            "page_num"
+          ]
+        }
+      ]
+    },
+    {
+      "page_number": 9,
+      "elements": [
+        {
+          "label": "sec_1",
+          "bbox": [
+            55,
+            81,
+            118,
+            97
+          ],
+          "text": "References",
+          "reading_order": 0,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            60,
+            103,
+            323,
+            136
+          ],
+          "text": "Y. Bengio, P. Simard and P. Frasconi. Long-term distributed neural network\nfor large-scale entity recognition. IEEE Transactions on Information\nNetworks , 5(2):157–166, 1994.",
+          "reading_order": 1,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            60,
+            137,
+            323,
+            160
+          ],
+          "text": "[2] C. M. Bishop, Neural networks for pattern recognition . Oxford\nUniversity press, 1995.",
+          "reading_order": 2,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            60,
+            160,
+            323,
+            181
+          ],
+          "text": "[3] W. L. Briggs, S. F. McCormick, et al. A Multigrid Tutorial . Siam,\n2000.",
+          "reading_order": 3,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            60,
+            183,
+            323,
+            215
+          ],
+          "text": "[6] K. Chaffatil, V. Lemtsky, E. Vedraldi, A. and Zisserman, \"The deviance\nof language models: an evaluation of recent feature encoding methods,\"\nIn BMIC , 2014.",
+          "reading_order": 4,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            60,
+            216,
+            323,
+            248
+          ],
+          "text": "[1] M. Everingham, L. Van Gool, K. E. Williams, J. Winn, and J. M. Swinski, \"Computer vision\nevaluation through borderline detection of objects (VOC) challenge\", IGCV,\npages 303–338, 2010.",
+          "reading_order": 5,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            60,
+            250,
+            231,
+            260
+          ],
+          "text": "[6] R. Girshick. Fast R-CNN. In ICCV , 2015.",
+          "reading_order": 6,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            60,
+            261,
+            324,
+            292
+          ],
+          "text": "19. R. Girshick, J. Donahue, T. Darrell, and J. Malik. Risk reduction for\nconvex object detection and segmentation. In\nCVPR , 2014.",
+          "reading_order": 7,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            60,
+            293,
+            324,
+            314
+          ],
+          "text": "[8] X. Glorot and Y. Bengio. Understanding the difficulty of training\ndeep feedforward neural networks. In AISTATS , 2010.",
+          "reading_order": 8,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            60,
+            316,
+            323,
+            337
+          ],
+          "text": "[9] I. J. Goodfellow, D. Warde-Farley, M. Mirza, A. Courville, and\nY. Bengio, Maxout networks. arXiv:1302.4389 , 2013.",
+          "reading_order": 9,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            60,
+            338,
+            323,
+            360
+          ],
+          "text": "10 K. He and J. Sun. Convolutional neural networks at constrained time\ncost. In CVPR , 2015.",
+          "reading_order": 10,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            60,
+            361,
+            323,
+            383
+          ],
+          "text": "#1 K. He, X. Zhang, S. Ren, and J. Sun. Spatial pyramid pooling in deep\nconvolutional networks for visual recognition. In ECCV , 2014.",
+          "reading_order": 11,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            60,
+            384,
+            323,
+            415
+          ],
+          "text": "6. Ke, X., Zhang, S., Ren, J. and Sun, J. Delving deep into rectifier\ngains: human-level performance on imagenet classification. In: IEEE\nICCV, 2015",
+          "reading_order": 12,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            60,
+            416,
+            323,
+            449
+          ],
+          "text": "[3] G. B. Hinton, N. Srivastava, A. Krizhevsky, I. Sutskever, et al.\nDeep residual learning for automatic object detection. In: IEEE conference on\nadaption of feature detectors. arXiv:1207.0580 , 2012.",
+          "reading_order": 13,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            60,
+            450,
+            323,
+            471
+          ],
+          "text": "[14] S. Hochreiter, Untersuchungen zu dynamischen neuronalen netzen,\nDiploma thesis , TU-Munich, 1991.",
+          "reading_order": 14,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            60,
+            472,
+            324,
+            494
+          ],
+          "text": "[15] S. Hochreiter and J. Schmidhuber. Long short-term memory. Neural\ncomputation , 9(8):1735–1780, 1997.",
+          "reading_order": 15,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            60,
+            495,
+            324,
+            517
+          ],
+          "text": "[16] S. Ioffe and C. Szegedy. Batch normalization: Accelerating deep\nnetwork training by reducing internal covariate shift. In ICML , 2015.",
+          "reading_order": 16,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            60,
+            518,
+            324,
+            539
+          ],
+          "text": "[11] H. Jegou, M. Douze, and C. Schmid. Product quantization for nearest\nneighbor search. TPAMI , 33, 2011.",
+          "reading_order": 17,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            60,
+            540,
+            323,
+            572
+          ],
+          "text": "[14] H. Jegou, F. Perronnin, M. Douze, J. Sanchez, P. Cervenets,\n“Videoconferencing: A aggregating large image descriptors into compressed\nTPM,” 2018.",
+          "reading_order": 18,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            60,
+            574,
+            323,
+            606
+          ],
+          "text": "9. Y. Jia, E. Shelhamer, J. Dunham, K. Jarar, L. Rang, B. Grube,\n2018. http://arxiv.org/abs/1808.09593 , an international architecture for fast\nfast feature embeddings. arXiv:1808.09593 , 2014.",
+          "reading_order": 19,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            60,
+            607,
+            323,
+            628
+          ],
+          "text": "20) A. Krizhevsky. Learning multiple layers of features from tiny im-\nages. Tech Report , 2009.",
+          "reading_order": 20,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            60,
+            629,
+            323,
+            651
+          ],
+          "text": "[1] A. Krizhevsky, I. Sutskever, and G. Hinton. Imagenet classification\nwith deep convolutional neural networks. In NIPS , 2012.",
+          "reading_order": 21,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            60,
+            652,
+            323,
+            684
+          ],
+          "text": "22. Y. LeCun, B. Boser, J. S. Denker, D. Henderson, R. E. Hubact,\nand M. Touvron. Leopold. 12, 1 (2009).\n\nwritten zip code recognition. Neural computation , 1989.",
+          "reading_order": 22,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            59,
+            685,
+            323,
+            707
+          ],
+          "text": "[23] Y. LeCun, L. Bottou, G. C. Orr, and K.-R. Mller. Efficient backpropagation.\nIn Neural Networks: Tricks of the trade, pages 9–50. Springer, 1998.",
+          "reading_order": 23,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            60,
+            708,
+            323,
+            729
+          ],
+          "text": "[24] C. Y. Lee, S. Xie, P. Gallagher, Z. Zhang, and Z. Tu. Deeply-\nsupervised nets. arXiv:1409.5185 , 2014.",
+          "reading_order": 24,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            60,
+            731,
+            323,
+            751
+          ],
+          "text": "25] M. Lin, Q. Chen, and S. Yan. Network in network. arXiv:1312.4400,\n2013.",
+          "reading_order": 25,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            60,
+            753,
+            323,
+            784
+          ],
+          "text": "2. T.-Y. Lin, M. Maire, S. Belongie, J. Hays, P. Peron, D. Ramanan,\n P. Dollár, and B. Mcleod. Microsoft COCO: Common objects in\ncontext. In ECCV , 2014.",
+          "reading_order": 26,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            60,
+            786,
+            323,
+            807
+          ],
+          "text": "[27] J. Long, E. Shelhamer, and T. Darrell. Fully convolutional networks\nfor semantic segmentation. In CVPR , 2015.",
+          "reading_order": 27,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            347,
+            85,
+            617,
+            106
+          ],
+          "text": "[26] G. Montifar, R. Pascanu, K. Cho, and Y. Bengio. On the number of\nlinear regions of deep neural networks. In NIPS , 2014.",
+          "reading_order": 28,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            347,
+            107,
+            617,
+            128
+          ],
+          "text": "[29] V. Nair and G. E. Hinton. Rectified linear units improve restricted\nboltzmann machines. In ICML , 2010.",
+          "reading_order": 29,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            347,
+            130,
+            616,
+            151
+          ],
+          "text": "[30] F. Perronnin and C. Dance. Fisher kernels on visual vocabularies for\nimage categorization. In CVPR , 2007.",
+          "reading_order": 30,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            347,
+            152,
+            616,
+            173
+          ],
+          "text": "[31] T. Raiko, H. Valpola, and Y. LeCun. Deep learning made easier by\nlinear transformations in perceptrons. In AISTATS , 2012.",
+          "reading_order": 31,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            347,
+            174,
+            617,
+            207
+          ],
+          "text": "[12] S. Ren, K. He, R. Girshick, and J. Sun. Faster R-CNN: Towards\nreal-time object detection with region proposal networks. In NIPS ,\n2015.",
+          "reading_order": 32,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            347,
+            209,
+            616,
+            229
+          ],
+          "text": "[33] B. D. Ripley. Pattern recognition and neural networks . Cambridge\nuniversity press, 1996.",
+          "reading_order": 33,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            347,
+            231,
+            616,
+            252
+          ],
+          "text": "[34] A. Romero, N. Ballas, S. E. Kahou, A. Chassang, C. Gatta, and\nY. Bengio. Fitnets: Hints for thin deep nets. In ICLR , 2015.",
+          "reading_order": 34,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            347,
+            253,
+            617,
+            285
+          ],
+          "text": "[9] O. Russakovsky, J. Deng, H. Su, J. Krause, S. Satheesh, M. S.\nShen, and Y. W. Li. PASCAL 2012: International Conference on\nlarge scale visual recognition, dallas, USA; 1809-0572, 2012.",
+          "reading_order": 35,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            347,
+            286,
+            617,
+            318
+          ],
+          "text": "[46] A. M. Saxe, L. J. McClelland, and S. Ganguli. Excitability solutions to\nexcitability: a review of learning in deep linear neural networks,\narXiv:1312.6329 , 2013.",
+          "reading_order": 36,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            347,
+            320,
+            617,
+            341
+          ],
+          "text": "[37] N. N. Schraulolph. Accelerated gradient descent by factor-centering\ndecomposition. Technical report, 1998.",
+          "reading_order": 37,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            347,
+            342,
+            617,
+            373
+          ],
+          "text": "[38] N. E. Schraadhoff, Centering neural network gradient factors, In:\nNeural Networks: Tricks of the Trade , page 207–228. Springer,\n2016.",
+          "reading_order": 38,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            347,
+            376,
+            617,
+            408
+          ],
+          "text": "P. Sermanet, D. Eigen, X. Zhang, M. Matta, R. Fergus, and Y. Le-\nlie. 1st International Conference on Machine Learning and Data\nMining using convolutional networks. In ICML , 2014.",
+          "reading_order": 39,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            347,
+            409,
+            617,
+            430
+          ],
+          "text": "[40] K. Simonyan and A. Zisserman. Very deep convolutional networks\nfor large-scale image recognition. In ICLR , 2015.",
+          "reading_order": 40,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            347,
+            431,
+            616,
+            453
+          ],
+          "text": "[14] R. K. Srivastava, K. Greff, and J. Schmidhuber. Highway networks,\narXiv:1505.00387 , 2015.",
+          "reading_order": 41,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            347,
+            454,
+            616,
+            475
+          ],
+          "text": "[42] R. K. Srivastava, K. Greff, and J. Schmidhuber. Training very deep\nnetworks. 1507.06228 , 2015.",
+          "reading_order": 42,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            347,
+            476,
+            617,
+            508
+          ],
+          "text": "[4] C. Szegedy, W. Li, Y. Ju, P. Sermant, S. Reed, D. Anguiano, D. Er-\nnach, and A. Rabinovich, Going deeper with convolu-\ntions, In CVPR , 2015.",
+          "reading_order": 43,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            347,
+            510,
+            617,
+            530
+          ],
+          "text": "[44] R. Szeliski. Fast surface interpolation using hierarchical basis func-\ntions. TPAMI , 1990.",
+          "reading_order": 44,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            347,
+            532,
+            616,
+            552
+          ],
+          "text": "[45] R. Szeliski. Locally adapted hierarchical basis preconditioning. In\nSIGGRAPH , 2006.",
+          "reading_order": 45,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            347,
+            554,
+            616,
+            598
+          ],
+          "text": "[4] T. Vatan, T. Raiso, H. Valpola, and Y. LeCun. Pushing stochas-\ntic gradient towards second-order methods—backpropagation learn-\ning with transformations in nonlinearities. In Neural Information\nProcessing , 2013.",
+          "reading_order": 46,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            347,
+            599,
+            617,
+            620
+          ],
+          "text": "[47] A. Vedaldi and B. Fulkerson. VLFeat: An open and portable library\nof computer vision algorithms, 2008.",
+          "reading_order": 47,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            347,
+            621,
+            617,
+            641
+          ],
+          "text": "[48] W. Venables and B. Ripley. Modern applied statistics with s-plus.\n1999.",
+          "reading_order": 48,
+          "tags": []
+        },
+        {
+          "label": "reference",
+          "bbox": [
+            347,
+            644,
+            617,
+            665
+          ],
+          "text": "[49] M. D. Zeiler and R. Fergus. Visualizing and understanding convolu-\ntional neural networks. In ECCV , 2014.",
+          "reading_order": 49,
+          "tags": []
+        }
+      ]
+    }
+  ]
+}

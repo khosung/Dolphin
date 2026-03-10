@@ -1,0 +1,2 @@
+That opinion is growing in popularity. Two class-action lawsuits have been filed against the NAR and some of the largest real-estate brokerages, such as Realogy and Keller Williams. In America, a practice called “tying” is common, whereby homesellers are forced to agree upfront on the rate they will pay the buyer’s broker. The lawsuits allege that sellers’ brokers put pressure on homeowners to offer the industry standard of 3 % . If they refuse, buyers’ brokers may refuse to show their home to clients.
+

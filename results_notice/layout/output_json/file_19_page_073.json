@@ -1,0 +1,196 @@
+[
+  {
+    "label": "header",
+    "bbox": [
+      448,
+      27,
+      573,
+      41
+    ],
+    "text": "",
+    "reading_order": 0,
+    "tags": []
+  },
+  {
+    "label": "sec_2",
+    "bbox": [
+      59,
+      67,
+      247,
+      87
+    ],
+    "text": "",
+    "reading_order": 1,
+    "tags": []
+  },
+  {
+    "label": "tab",
+    "bbox": [
+      50,
+      123,
+      581,
+      214
+    ],
+    "text": "",
+    "reading_order": 2,
+    "tags": []
+  },
+  {
+    "label": "sec_3",
+    "bbox": [
+      58,
+      229,
+      83,
+      246
+    ],
+    "text": "",
+    "reading_order": 3,
+    "tags": []
+  },
+  {
+    "label": "para",
+    "bbox": [
+      63,
+      262,
+      575,
+      290
+    ],
+    "text": "",
+    "reading_order": 4,
+    "tags": []
+  },
+  {
+    "label": "para",
+    "bbox": [
+      62,
+      300,
+      320,
+      313
+    ],
+    "text": "",
+    "reading_order": 5,
+    "tags": []
+  },
+  {
+    "label": "list",
+    "bbox": [
+      68,
+      316,
+      576,
+      347
+    ],
+    "text": "",
+    "reading_order": 6,
+    "tags": []
+  },
+  {
+    "label": "sec_3",
+    "bbox": [
+      58,
+      370,
+      84,
+      387
+    ],
+    "text": "",
+    "reading_order": 7,
+    "tags": []
+  },
+  {
+    "label": "para",
+    "bbox": [
+      63,
+      401,
+      293,
+      416
+    ],
+    "text": "",
+    "reading_order": 8,
+    "tags": []
+  },
+  {
+    "label": "sec_3",
+    "bbox": [
+      58,
+      437,
+      83,
+      455
+    ],
+    "text": "",
+    "reading_order": 9,
+    "tags": []
+  },
+  {
+    "label": "para",
+    "bbox": [
+      63,
+      470,
+      354,
+      483
+    ],
+    "text": "",
+    "reading_order": 10,
+    "tags": []
+  },
+  {
+    "label": "list",
+    "bbox": [
+      69,
+      484,
+      465,
+      515
+    ],
+    "text": "",
+    "reading_order": 11,
+    "tags": []
+  },
+  {
+    "label": "para",
+    "bbox": [
+      64,
+      524,
+      575,
+      584
+    ],
+    "text": "",
+    "reading_order": 12,
+    "tags": []
+  },
+  {
+    "label": "list",
+    "bbox": [
+      69,
+      584,
+      577,
+      694
+    ],
+    "text": "",
+    "reading_order": 13,
+    "tags": []
+  },
+  {
+    "label": "para",
+    "bbox": [
+      76,
+      695,
+      534,
+      709
+    ],
+    "text": "",
+    "reading_order": 14,
+    "tags": []
+  },
+  {
+    "label": "foot",
+    "bbox": [
+      567,
+      846,
+      583,
+      859
+    ],
+    "text": "",
+    "reading_order": 15,
+    "tags": [
+      "page_num"
+    ]
+  }
+]

@@ -1,0 +1,136 @@
+[
+  {
+    "label": "header",
+    "bbox": [
+      448,
+      27,
+      573,
+      40
+    ],
+    "text": "",
+    "reading_order": 0,
+    "tags": []
+  },
+  {
+    "label": "sec_2",
+    "bbox": [
+      59,
+      67,
+      375,
+      85
+    ],
+    "text": "",
+    "reading_order": 1,
+    "tags": []
+  },
+  {
+    "label": "tab",
+    "bbox": [
+      49,
+      123,
+      555,
+      214
+    ],
+    "text": "",
+    "reading_order": 2,
+    "tags": []
+  },
+  {
+    "label": "sec_3",
+    "bbox": [
+      58,
+      229,
+      82,
+      246
+    ],
+    "text": "",
+    "reading_order": 3,
+    "tags": []
+  },
+  {
+    "label": "list",
+    "bbox": [
+      61,
+      262,
+      575,
+      417
+    ],
+    "text": "",
+    "reading_order": 4,
+    "tags": []
+  },
+  {
+    "label": "sec_3",
+    "bbox": [
+      58,
+      437,
+      82,
+      456
+    ],
+    "text": "",
+    "reading_order": 5,
+    "tags": []
+  },
+  {
+    "label": "list",
+    "bbox": [
+      61,
+      470,
+      575,
+      539
+    ],
+    "text": "",
+    "reading_order": 6,
+    "tags": []
+  },
+  {
+    "label": "sec_3",
+    "bbox": [
+      58,
+      559,
+      82,
+      577
+    ],
+    "text": "",
+    "reading_order": 7,
+    "tags": []
+  },
+  {
+    "label": "list",
+    "bbox": [
+      61,
+      593,
+      573,
+      623
+    ],
+    "text": "",
+    "reading_order": 8,
+    "tags": []
+  },
+  {
+    "label": "tab",
+    "bbox": [
+      73,
+      627,
+      560,
+      754
+    ],
+    "text": "",
+    "reading_order": 9,
+    "tags": []
+  },
+  {
+    "label": "foot",
+    "bbox": [
+      569,
+      847,
+      582,
+      859
+    ],
+    "text": "",
+    "reading_order": 10,
+    "tags": [
+      "page_num"
+    ]
+  }
+]

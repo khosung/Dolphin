@@ -1,0 +1,26 @@
+[
+  {
+    "label": "fig",
+    "bbox": [
+      398,
+      289,
+      573,
+      475
+    ],
+    "text": "",
+    "reading_order": 0,
+    "tags": []
+  },
+  {
+    "label": "para",
+    "bbox": [
+      284,
+      488,
+      569,
+      522
+    ],
+    "text": "",
+    "reading_order": 1,
+    "tags": []
+  }
+]

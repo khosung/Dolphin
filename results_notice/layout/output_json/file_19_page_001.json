@@ -1,0 +1,86 @@
+[
+  {
+    "label": "para",
+    "bbox": [
+      498,
+      88,
+      563,
+      122
+    ],
+    "text": "",
+    "reading_order": 0,
+    "tags": []
+  },
+  {
+    "label": "para",
+    "bbox": [
+      76,
+      143,
+      529,
+      260
+    ],
+    "text": "",
+    "reading_order": 1,
+    "tags": []
+  },
+  {
+    "label": "para",
+    "bbox": [
+      77,
+      286,
+      297,
+      338
+    ],
+    "text": "",
+    "reading_order": 2,
+    "tags": []
+  },
+  {
+    "label": "fig",
+    "bbox": [
+      143,
+      381,
+      577,
+      765
+    ],
+    "text": "",
+    "reading_order": 3,
+    "tags": []
+  },
+  {
+    "label": "fig",
+    "bbox": [
+      182,
+      795,
+      214,
+      829
+    ],
+    "text": "",
+    "reading_order": 4,
+    "tags": []
+  },
+  {
+    "label": "para",
+    "bbox": [
+      216,
+      798,
+      287,
+      825
+    ],
+    "text": "",
+    "reading_order": 5,
+    "tags": []
+  },
+  {
+    "label": "fig",
+    "bbox": [
+      386,
+      786,
+      456,
+      832
+    ],
+    "text": "",
+    "reading_order": 6,
+    "tags": []
+  }
+]

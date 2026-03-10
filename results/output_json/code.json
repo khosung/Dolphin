@@ -1,0 +1,6 @@
+[
+  {
+    "label": "code",
+    "text": "# Handle different content types\n  if label in {'sec_0', 'sec_1', 'sec_2', 'sec_3', 'sec_4', 'sec_5'}:\n    markdown_content.append(self._handleHeading(text, label))\n  elif label == 'fig':\n    markdown_content.append(self._handle_figure(text, section_count))\n  elif label == 'tab':\n    print(text)\n    markdown_content.append(self._handle_table(text))\n    print(markdown_content[-1])\n  elif label == 'equ':\n    markdown_content.append(self._handle_formula(text))\n  elif label == 'list':\n    markdown_content.append(self._handle_list_item(text))\n  elif label == 'code':\n    markdown_content.append(f\"```\\nbash\\n{text}\\n```\\n\")\n  elif label not in self.special_labels:\n    # Handle regular text (paragraphs, etc.)\n    processed_text = self._handle_text(text)\n    markdown_content.append(f\"{processed_text}\\n\\n\")\n  else:\n    markdown_content.append(f\"{text}\\n\\n\")\n  except Exception as e:\n    print(f\"Error processing item {section_count}: {str(e)}\")\n    # Add a placeholder for the failed item\n    markdown_content.append(f\"*[Error processing content]*\\n\\n\")"
+  }
+]

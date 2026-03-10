@@ -22,19 +22,19 @@ class DOLPHIN:
         Args:
             model_id_or_path: Path to local model or Hugging Face model ID
         """
-        # Load model from local path or Hugging Face hub
-        self.processor = AutoProcessor.from_pretrained(model_id_or_path)
-        self.model = Qwen2_5_VLForConditionalGeneration.from_pretrained(model_id_or_path)
-        self.model.eval()
-        
-        # Set device and precision
+        # Set device and precision first to avoid peak memory at load time
         self.device = "cuda" if torch.cuda.is_available() else "cpu"
-        self.model.to(self.device)
+        load_dtype = torch.bfloat16 if self.device == "cuda" else torch.float32
 
-        if self.device == "cuda":
-            self.model = self.model.bfloat16()
-        else:
-            self.model = self.model.float()
+        # Load processor/model from local path or Hugging Face hub
+        self.processor = AutoProcessor.from_pretrained(model_id_or_path)
+        self.model = Qwen2_5_VLForConditionalGeneration.from_pretrained(
+            model_id_or_path,
+            torch_dtype=load_dtype,
+            low_cpu_mem_usage=True,
+        )
+        self.model.eval()
+        self.model.to(self.device)
         
         # set tokenizer
         self.tokenizer = self.processor.tokenizer

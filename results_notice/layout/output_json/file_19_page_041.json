@@ -1,0 +1,38 @@
+[
+  {
+    "label": "fig",
+    "bbox": [
+      398,
+      286,
+      573,
+      475
+    ],
+    "text": "",
+    "reading_order": 0,
+    "tags": []
+  },
+  {
+    "label": "sec_1",
+    "bbox": [
+      380,
+      488,
+      569,
+      522
+    ],
+    "text": "",
+    "reading_order": 1,
+    "tags": []
+  },
+  {
+    "label": "list",
+    "bbox": [
+      208,
+      537,
+      574,
+      643
+    ],
+    "text": "",
+    "reading_order": 2,
+    "tags": []
+  }
+]

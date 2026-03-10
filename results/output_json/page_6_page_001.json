@@ -1,0 +1,220 @@
+[
+  {
+    "label": "fig",
+    "bbox": [
+      74,
+      15,
+      123,
+      49
+    ],
+    "text": "",
+    "reading_order": 0,
+    "tags": []
+  },
+  {
+    "label": "header",
+    "bbox": [
+      147,
+      18,
+      543,
+      46
+    ],
+    "text": "",
+    "reading_order": 1,
+    "tags": [
+      "meta_subject"
+    ]
+  },
+  {
+    "label": "sec_0",
+    "bbox": [
+      170,
+      116,
+      501,
+      138
+    ],
+    "text": "",
+    "reading_order": 2,
+    "tags": []
+  },
+  {
+    "label": "para",
+    "bbox": [
+      151,
+      168,
+      520,
+      224
+    ],
+    "text": "",
+    "reading_order": 3,
+    "tags": [
+      "author",
+      "author_mail",
+      "author_affili"
+    ]
+  },
+  {
+    "label": "sec_1",
+    "bbox": [
+      164,
+      251,
+      216,
+      268
+    ],
+    "text": "",
+    "reading_order": 4,
+    "tags": [
+      "paper_abstract"
+    ]
+  },
+  {
+    "label": "para",
+    "bbox": [
+      53,
+      276,
+      326,
+      480
+    ],
+    "text": "",
+    "reading_order": 5,
+    "tags": [
+      "paper_abstract"
+    ]
+  },
+  {
+    "label": "para",
+    "bbox": [
+      54,
+      480,
+      326,
+      590
+    ],
+    "text": "",
+    "reading_order": 6,
+    "tags": [
+      "paper_abstract"
+    ]
+  },
+  {
+    "label": "sec_1",
+    "bbox": [
+      55,
+      602,
+      145,
+      620
+    ],
+    "text": "",
+    "reading_order": 7,
+    "tags": []
+  },
+  {
+    "label": "para",
+    "bbox": [
+      54,
+      627,
+      326,
+      777
+    ],
+    "text": "",
+    "reading_order": 8,
+    "tags": []
+  },
+  {
+    "label": "para",
+    "bbox": [
+      347,
+      408,
+      534,
+      423
+    ],
+    "text": "",
+    "reading_order": 9,
+    "tags": []
+  },
+  {
+    "label": "fig",
+    "bbox": [
+      347,
+      251,
+      619,
+      340
+    ],
+    "text": "",
+    "reading_order": 10,
+    "tags": []
+  },
+  {
+    "label": "cap",
+    "bbox": [
+      346,
+      343,
+      619,
+      394
+    ],
+    "text": "",
+    "reading_order": 11,
+    "tags": []
+  },
+  {
+    "label": "para",
+    "bbox": [
+      346,
+      423,
+      619,
+      560
+    ],
+    "text": "",
+    "reading_order": 12,
+    "tags": []
+  },
+  {
+    "label": "para",
+    "bbox": [
+      346,
+      561,
+      619,
+      671
+    ],
+    "text": "",
+    "reading_order": 13,
+    "tags": []
+  },
+  {
+    "label": "para",
+    "bbox": [
+      346,
+      672,
+      619,
+      808
+    ],
+    "text": "",
+    "reading_order": 14,
+    "tags": []
+  },
+  {
+    "label": "fnote",
+    "bbox": [
+      55,
+      785,
+      325,
+      808
+    ],
+    "text": "",
+    "reading_order": 15,
+    "tags": []
+  },
+  {
+    "label": "foot",
+    "bbox": [
+      336,
+      829,
+      355,
+      842
+    ],
+    "text": "",
+    "reading_order": 16,
+    "tags": [
+      "page_num"
+    ]
+  }
+]

@@ -1,0 +1,50 @@
+[
+  {
+    "label": "header",
+    "bbox": [
+      61,
+      28,
+      132,
+      40
+    ],
+    "text": "",
+    "reading_order": 0,
+    "tags": []
+  },
+  {
+    "label": "fig",
+    "bbox": [
+      70,
+      111,
+      347,
+      421
+    ],
+    "text": "",
+    "reading_order": 1,
+    "tags": []
+  },
+  {
+    "label": "fig",
+    "bbox": [
+      71,
+      470,
+      505,
+      798
+    ],
+    "text": "",
+    "reading_order": 2,
+    "tags": []
+  },
+  {
+    "label": "foot",
+    "bbox": [
+      50,
+      847,
+      61,
+      859
+    ],
+    "text": "",
+    "reading_order": 3,
+    "tags": []
+  }
+]
