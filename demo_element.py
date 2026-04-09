@@ -16,6 +16,47 @@ from qwen_vl_utils import process_vision_info
 from utils.utils import *
 
 
+DEFAULT_LANGUAGE_CONSTRAINT_TEXT = (
+    "Language constraint: Keep the original language from the image. "
+    "Do not translate or add Chinese/Japanese text unless it clearly exists in the source. "
+    "Preserve symbols, numbers, and formatting as faithfully as possible."
+)
+
+
+def normalize_source_languages(raw_values):
+    """Normalize --source_languages input into a clean list."""
+    if not raw_values:
+        return []
+
+    normalized = []
+    for value in raw_values:
+        for token in str(value).split(","):
+            token = token.strip()
+            if token:
+                normalized.append(token)
+    return normalized
+
+
+def apply_language_constraint(base_prompt, use_constraint=False, constraint_text="", source_languages=None):
+    """Append language-constraint instructions only when enabled."""
+    if not use_constraint:
+        return base_prompt
+
+    text = (constraint_text or "").strip()
+    language_hint = ""
+    if source_languages:
+        language_hint = (
+            f"The source languages in this image are: {', '.join(source_languages)}. "
+            "Keep these languages as-is as much as possible."
+        )
+
+    parts = [part for part in [text, language_hint] if part]
+    if not parts:
+        return base_prompt
+
+    return f"{base_prompt}\n\n{' '.join(parts)}"
+
+
 class DOLPHIN:
     def __init__(self, model_id_or_path):
         """Initialize the Hugging Face model
@@ -118,7 +159,15 @@ class DOLPHIN:
         return results
 
 
-def process_element(image_path, model, element_type, save_dir=None):
+def process_element(
+    image_path,
+    model,
+    element_type,
+    save_dir=None,
+    use_language_constraint_prompt=False,
+    language_constraint_text="",
+    source_languages=None,
+):
     """Process a single element image (text, table, formula)
     
     Args:
@@ -148,6 +197,12 @@ def process_element(image_path, model, element_type, save_dir=None):
         prompt = "Read text in the image."
         label = "para"
     
+    prompt = apply_language_constraint(
+        prompt,
+        use_language_constraint_prompt,
+        language_constraint_text,
+        source_languages,
+    )
     # Process the element
     result = model.chat(prompt, pil_image)
     
@@ -184,7 +239,26 @@ def main():
         help="Directory to save parsing results (default: same as input directory)",
     )
     parser.add_argument("--print_results", action="store_true", help="Print recognition results to console")
+    parser.add_argument(
+        "--use_language_constraint_prompt",
+        action="store_true",
+        help="Use prompts with additional language-preservation constraints",
+    )
+    parser.add_argument(
+        "--language_constraint_text",
+        type=str,
+        default=DEFAULT_LANGUAGE_CONSTRAINT_TEXT,
+        help="Constraint text appended when --use_language_constraint_prompt is enabled",
+    )
+    parser.add_argument(
+        "--source_languages",
+        nargs="*",
+        default=None,
+        help="Optional source language list (e.g., --source_languages Korean English)",
+    )
     args = parser.parse_args()
+    source_languages = normalize_source_languages(args.source_languages)
+    use_language_constraint_prompt = args.use_language_constraint_prompt or bool(source_languages)
     
     # Load Model
     model = DOLPHIN(args.model_path)
@@ -218,6 +292,9 @@ def main():
                 model=model,
                 element_type=args.element_type,
                 save_dir=save_dir,
+                use_language_constraint_prompt=use_language_constraint_prompt,
+                language_constraint_text=args.language_constraint_text,
+                source_languages=source_languages,
             )
 
             if args.print_results:

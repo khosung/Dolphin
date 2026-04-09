@@ -6,6 +6,7 @@ SPDX-License-Identifier: MIT
 import argparse
 import glob
 import os
+from datetime import datetime
 
 import torch
 from PIL import Image
@@ -13,6 +14,66 @@ from transformers import AutoProcessor, Qwen2_5_VLForConditionalGeneration
 from qwen_vl_utils import process_vision_info
 
 from utils.utils import *
+
+
+DEFAULT_LANGUAGE_CONSTRAINT_TEXT = (
+    "Language constraint: Keep the original language from the image. "
+    "Do not translate or add Chinese/Japanese text unless it clearly exists in the source. "
+    "Preserve symbols, numbers, and formatting as faithfully as possible."
+)
+
+
+def _sanitize_name(text):
+    """Keep only alphanumeric characters for stable output folder names."""
+    sanitized = "".join(ch for ch in text if ch.isalnum())
+    return sanitized or "input"
+
+
+def build_run_save_dir(base_save_dir, input_path, run_tag=None):
+    """Build a run-specific output directory: <name>_<yymmdd>[_<tag>]."""
+    input_name = os.path.splitext(os.path.basename(input_path.rstrip("/\\")))[0]
+    input_name = _sanitize_name(input_name)
+    date_part = datetime.now().strftime("%y%m%d")
+
+    dir_name = f"{input_name}_{date_part}"
+    if run_tag:
+        dir_name = f"{dir_name}_{_sanitize_name(run_tag)}"
+
+    return os.path.join(base_save_dir, dir_name)
+
+
+def normalize_source_languages(raw_values):
+    """Normalize --source_languages input into a clean list."""
+    if not raw_values:
+        return []
+
+    normalized = []
+    for value in raw_values:
+        for token in str(value).split(","):
+            token = token.strip()
+            if token:
+                normalized.append(token)
+    return normalized
+
+
+def apply_language_constraint(base_prompt, use_constraint=False, constraint_text="", source_languages=None):
+    """Append language-constraint instructions only when enabled."""
+    if not use_constraint:
+        return base_prompt
+
+    text = (constraint_text or "").strip()
+    language_hint = ""
+    if source_languages:
+        language_hint = (
+            f"The source languages in this image are: {', '.join(source_languages)}. "
+            "Keep these languages as-is as much as possible."
+        )
+
+    parts = [part for part in [text, language_hint] if part]
+    if not parts:
+        return base_prompt
+
+    return f"{base_prompt}\n\n{' '.join(parts)}"
 
 
 class DOLPHIN:
@@ -124,13 +185,22 @@ class DOLPHIN:
         return results
 
 
-def process_document(document_path, model, save_dir, max_batch_size=None):
+def process_document(
+    document_path,
+    model,
+    save_dir,
+    max_batch_size=None,
+    pdf_target_size=896,
+    use_language_constraint_prompt=False,
+    language_constraint_text="",
+    source_languages=None,
+):
     """Parse documents with two stages - Handles both images and PDFs"""
     file_ext = os.path.splitext(document_path)[1].lower()
     
     if file_ext == '.pdf':
         # Convert PDF to images
-        images = convert_pdf_to_images(document_path)
+        images = convert_pdf_to_images(document_path, target_size=pdf_target_size)
         if not images:
             raise Exception(f"Failed to convert PDF {document_path} to images")
         
@@ -146,7 +216,15 @@ def process_document(document_path, model, save_dir, max_batch_size=None):
             
             # Process this page (don't save individual page results)
             json_path, recognition_results = process_single_image(
-                pil_image, model, save_dir, page_name, max_batch_size, save_individual=False
+                pil_image,
+                model,
+                save_dir,
+                page_name,
+                max_batch_size,
+                save_individual=False,
+                use_language_constraint_prompt=use_language_constraint_prompt,
+                language_constraint_text=language_constraint_text,
+                source_languages=source_languages,
             )
             
             # Add page information to results
@@ -165,10 +243,29 @@ def process_document(document_path, model, save_dir, max_batch_size=None):
         # Process regular image file
         pil_image = Image.open(document_path).convert("RGB")
         base_name = os.path.splitext(os.path.basename(document_path))[0]
-        return process_single_image(pil_image, model, save_dir, base_name, max_batch_size)
+        return process_single_image(
+            pil_image,
+            model,
+            save_dir,
+            base_name,
+            max_batch_size,
+            use_language_constraint_prompt=use_language_constraint_prompt,
+            language_constraint_text=language_constraint_text,
+            source_languages=source_languages,
+        )
 
 
-def process_single_image(image, model, save_dir, image_name, max_batch_size=None, save_individual=True):
+def process_single_image(
+    image,
+    model,
+    save_dir,
+    image_name,
+    max_batch_size=None,
+    save_individual=True,
+    use_language_constraint_prompt=False,
+    language_constraint_text="",
+    source_languages=None,
+):
     """Process a single image (either from file or converted from PDF page)
     
     Args:
@@ -187,7 +284,17 @@ def process_single_image(image, model, save_dir, image_name, max_batch_size=None
     # print(layout_output)
 
     # Stage 2: Element-level content parsing
-    recognition_results = process_elements(layout_output, image, model, max_batch_size, save_dir, image_name)
+    recognition_results = process_elements(
+        layout_output,
+        image,
+        model,
+        max_batch_size,
+        save_dir,
+        image_name,
+        use_language_constraint_prompt=use_language_constraint_prompt,
+        language_constraint_text=language_constraint_text,
+        source_languages=source_languages,
+    )
 
     # Save outputs only if requested (skip for PDF pages)
     json_path = None
@@ -198,7 +305,17 @@ def process_single_image(image, model, save_dir, image_name, max_batch_size=None
     return json_path, recognition_results
 
 
-def process_elements(layout_results, image, model, max_batch_size, save_dir=None, image_name=None):
+def process_elements(
+    layout_results,
+    image,
+    model,
+    max_batch_size,
+    save_dir=None,
+    image_name=None,
+    use_language_constraint_prompt=False,
+    language_constraint_text="",
+    source_languages=None,
+):
     """Parse all document elements with parallel decoding"""
     layout_results_list = parse_layout_string(layout_results)
     if not layout_results_list or not (layout_results.startswith("[") and layout_results.endswith("]")):
@@ -264,21 +381,45 @@ def process_elements(layout_results, image, model, max_batch_size, save_dir=None
             continue
 
     recognition_results = figure_results.copy()
+    table_prompt = apply_language_constraint(
+        "Parse the table in the image.",
+        use_language_constraint_prompt,
+        language_constraint_text,
+        source_languages,
+    )
+    formula_prompt = apply_language_constraint(
+        "Read formula in the image.",
+        use_language_constraint_prompt,
+        language_constraint_text,
+        source_languages,
+    )
+    code_prompt = apply_language_constraint(
+        "Read code in the image.",
+        use_language_constraint_prompt,
+        language_constraint_text,
+        source_languages,
+    )
+    text_prompt = apply_language_constraint(
+        "Read text in the image.",
+        use_language_constraint_prompt,
+        language_constraint_text,
+        source_languages,
+    )
     
     if tab_elements:
-        results = process_element_batch(tab_elements, model, "Parse the table in the image.", max_batch_size)
+        results = process_element_batch(tab_elements, model, table_prompt, max_batch_size)
         recognition_results.extend(results)
     
     if equ_elements:
-        results = process_element_batch(equ_elements, model, "Read formula in the image.", max_batch_size)
+        results = process_element_batch(equ_elements, model, formula_prompt, max_batch_size)
         recognition_results.extend(results)
     
     if code_elements:
-        results = process_element_batch(code_elements, model, "Read code in the image.", max_batch_size)
+        results = process_element_batch(code_elements, model, code_prompt, max_batch_size)
         recognition_results.extend(results)
     
     if text_elements:
-        results = process_element_batch(text_elements, model, "Read text in the image.", max_batch_size)
+        results = process_element_batch(text_elements, model, text_prompt, max_batch_size)
         recognition_results.extend(results)
 
     recognition_results.sort(key=lambda x: x.get("reading_order", 0))
@@ -336,7 +477,38 @@ def main():
         default=4,
         help="Maximum number of document elements to parse in a single batch (default: 4)",
     )
+    parser.add_argument(
+        "--pdf_target_size",
+        type=int,
+        default=896,
+        help="Target size for PDF page rendering before parsing (default: 896)",
+    )
+    parser.add_argument(
+        "--run_tag",
+        type=str,
+        default="",
+        help="Optional run tag appended to auto-created output subdirectory name",
+    )
+    parser.add_argument(
+        "--use_language_constraint_prompt",
+        action="store_true",
+        help="Use prompts with additional language-preservation constraints",
+    )
+    parser.add_argument(
+        "--language_constraint_text",
+        type=str,
+        default=DEFAULT_LANGUAGE_CONSTRAINT_TEXT,
+        help="Constraint text appended when --use_language_constraint_prompt is enabled",
+    )
+    parser.add_argument(
+        "--source_languages",
+        nargs="*",
+        default=None,
+        help="Optional source language list (e.g., --source_languages Korean English)",
+    )
     args = parser.parse_args()
+    source_languages = normalize_source_languages(args.source_languages)
+    use_language_constraint_prompt = args.use_language_constraint_prompt or bool(source_languages)
 
     # Load Model
     model = DOLPHIN(args.model_path)
@@ -366,6 +538,10 @@ def main():
     save_dir = args.save_dir or (
         args.input_path if os.path.isdir(args.input_path) else os.path.dirname(args.input_path)
     )
+    if args.save_dir:
+        save_dir = build_run_save_dir(save_dir, args.input_path, args.run_tag)
+
+    print(f"Output directory: {save_dir}")
     setup_output_dirs(save_dir)
 
     total_samples = len(document_files)
@@ -380,6 +556,10 @@ def main():
                 model=model,
                 save_dir=save_dir,
                 max_batch_size=args.max_batch_size,
+                pdf_target_size=args.pdf_target_size,
+                use_language_constraint_prompt=use_language_constraint_prompt,
+                language_constraint_text=args.language_constraint_text,
+                source_languages=source_languages,
             )
 
             print(f"Processing completed. Results saved to {save_dir}")

@@ -6,6 +6,7 @@ SPDX-License-Identifier: MIT
 import argparse
 import glob
 import os
+from datetime import datetime
 
 import torch
 from PIL import Image
@@ -13,6 +14,25 @@ from transformers import AutoProcessor, Qwen2_5_VLForConditionalGeneration
 from qwen_vl_utils import process_vision_info
 
 from utils.utils import *
+
+
+def _sanitize_name(text):
+    """Keep only alphanumeric characters for stable output folder names."""
+    sanitized = "".join(ch for ch in text if ch.isalnum())
+    return sanitized or "input"
+
+
+def build_run_save_dir(base_save_dir, input_path, run_tag=None):
+    """Build a run-specific output directory: <name>_<yymmdd>[_<tag>]."""
+    input_name = os.path.splitext(os.path.basename(input_path.rstrip("/\\")))[0]
+    input_name = _sanitize_name(input_name)
+    date_part = datetime.now().strftime("%y%m%d")
+
+    dir_name = f"{input_name}_{date_part}"
+    if run_tag:
+        dir_name = f"{dir_name}_{_sanitize_name(run_tag)}"
+
+    return os.path.join(base_save_dir, dir_name)
 
 
 class DOLPHIN:
@@ -125,7 +145,7 @@ class DOLPHIN:
 
 
 
-def process_layout(input_path, model, save_dir):
+def process_layout(input_path, model, save_dir, pdf_target_size=896):
     """Process layout detection for image or PDF
     
     Args:
@@ -137,7 +157,7 @@ def process_layout(input_path, model, save_dir):
     
     if file_ext == '.pdf':
         # Convert PDF to images
-        images = convert_pdf_to_images(input_path)
+        images = convert_pdf_to_images(input_path, target_size=pdf_target_size)
         if not images:
             raise Exception(f"Failed to convert PDF {input_path} to images")
         
@@ -208,6 +228,18 @@ def main():
         default=None,
         help="Directory to save results (default: same as input directory)",
     )
+    parser.add_argument(
+        "--pdf_target_size",
+        type=int,
+        default=896,
+        help="Target size for PDF page rendering before parsing (default: 896)",
+    )
+    parser.add_argument(
+        "--run_tag",
+        type=str,
+        default="",
+        help="Optional run tag appended to auto-created output subdirectory name",
+    )
     args = parser.parse_args()
     
     # Load Model
@@ -218,6 +250,10 @@ def main():
     save_dir = args.save_dir or (
         args.input_path if os.path.isdir(args.input_path) else os.path.dirname(args.input_path)
     )
+    if args.save_dir:
+        save_dir = build_run_save_dir(save_dir, args.input_path, args.run_tag)
+
+    print(f"Output directory: {save_dir}")
     
     # Create save directory structure
     setup_output_dirs(save_dir)
@@ -258,6 +294,7 @@ def main():
                 input_path=file_path,
                 model=model,
                 save_dir=save_dir,
+                pdf_target_size=args.pdf_target_size,
             )
             print(f"\n✓ Processing completed for {file_path}")
             
